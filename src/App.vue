@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router/auto'
-import LogInOut from './components/LogInOut.vue'
+
 </script>
 
 <template>
