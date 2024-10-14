@@ -13,12 +13,15 @@ import { RouterLink, RouterView } from 'vue-router/auto'
         <ul>
           <RouterLink to="/">Accueil</RouterLink>
           <RouterLink to="/About">About</RouterLink>
+          <RouterLink to="/projets">projets</RouterLink>
         </ul>
       </nav>
     </div>
   </header>
   <main>
-    <RouterView />
-  </main>
+    <Suspense>
+    <RouterView /></Suspense>
+    </main>
+  
 </template>
 
