@@ -3,7 +3,10 @@ import ScrollReset from '@/assets/icons/scroll-reset.vue';
 import phoneIcon from '@/assets/icons/phone-icon.vue';
 import pingIcon from '@/assets/icons/ping-icon.vue';
 import ImgPb from '@/components/ImgPb.vue'; // Chemin à ajuster si nécessaire
-
+import barreSeparation from '@/assets/icons/barre-separation.vue';
+import grandeBarreSeparation from '@/assets/icons/grande-barre-separation.vue';
+import computerIcon from '@/assets/icons/computer-icon.vue';
+import collectifIcon from '@/assets/icons/collectif-icon.vue';
 import { ref, onMounted } from 'vue';
 import PocketBase from 'pocketbase';
 import type { CompetencesResponse, LogicielsResponse } from '@/pocketbase-types'; // Types générés par PocketBase Typegen
@@ -89,7 +92,7 @@ onMounted(() => {
     </div>
 
     <div class="space-y-4">
-      <h2 class="font-bold text-2xl text-mise-en-evidence">Intéractions</h2>
+      <h2 class="font-bold text-2xl text-mise-en-evidence">Icônes</h2>
       <!-- Bouton Projets -->
       <div class="w-[210px] h-[52px] rounded-[5px] bg-interactions flex items-center justify-center">
         <p class="text-white font-handjet text-3xl">Projets</p>
@@ -98,6 +101,10 @@ onMounted(() => {
       <phoneIcon />
       <pingIcon />
       <ScrollReset />
+      <barreSeparation />
+      <grandeBarreSeparation />
+      <computerIcon />
+      <collectifIcon />
     </div>
 
     <!-- Section compétences -->
