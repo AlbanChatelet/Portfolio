@@ -2,6 +2,7 @@
 import ScrollReset from '@/assets/icons/scroll-reset.vue';
 import phoneIcon from '@/assets/icons/phone-icon.vue';
 import pingIcon from '@/assets/icons/ping-icon.vue';
+import ImgPb from '@/components/ImgPb.vue'; // Chemin à ajuster si nécessaire
 
 import { ref, onMounted } from 'vue';
 import PocketBase from 'pocketbase';
@@ -115,16 +116,27 @@ onMounted(() => {
 
     <!-- Section logiciels -->
     <div>
-      <h2 class="font-bold text-2xl text-mise-en-evidence mb-4">Logiciels</h2>
-      <div class="flex flex-wrap gap-4">
-        <div 
-          v-for="logiciel in logiciels" 
-          :key="logiciel.id"
-          class="rounded-md p-4 text-center bg-mise-en-evidence font-poppins text-lg text-white"
-        >
-          {{ logiciel.nom_logiciel }}
-        </div>
+    <h2 class="font-bold text-2xl text-mise-en-evidence mb-4">Logiciels</h2>
+    <div class="flex flex-wrap gap-4">
+      <div 
+        v-for="logiciel in logiciels" 
+        :key="logiciel.id"
+        
+      >
+        <!-- Utilisation du composant ImgPb pour afficher le logo -->
+        <ImgPb 
+          v-if="logiciel.logo_logiciel" 
+          :record="logiciel" 
+          :filename="logiciel.logo_logiciel" 
+          width="100" 
+          height="100" 
+        />
+        <!-- Affichage du nom du logiciel -->
+         <div class="rounded-md p-4 text-center bg-mise-en-evidence font-poppins text-lg text-white">
+        {{ logiciel.nom_logiciel }}
+      </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
