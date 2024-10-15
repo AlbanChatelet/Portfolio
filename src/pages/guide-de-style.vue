@@ -1,3 +1,13 @@
+<script>
+import ScrollReset from '@/assets/icons/scroll-reset.vue';
+
+export default {
+  components: {
+    ScrollReset, // Composant déclaré ici
+  },
+};
+</script>
+
 <template>
   <div class="grid grid-cols-2 gap-12">
     <!-- Section haut de page -->
@@ -37,5 +47,19 @@
         <li><p class="font-poppins text-xl">Compétences / logiciels (Poppins)</p></li>
       </ul>
     </div>
+  </div>
+
+  <!-- Section interactions -->
+  <div class="space-y-4">
+    <h2 class="font-bold text-2xl text-mise-en-evidence">Intéractions</h2>
+
+    <!-- Bouton Projets -->
+    <div class="w-[210px] h-[52px] rounded-[5px] bg-interactions flex items-center justify-center">
+      <p class="text-white font-handjet text-3xl">Projets</p>
+      
+    </div>
+
+    <!-- Composant ScrollReset -->
+    <ScrollReset />
   </div>
 </template>
