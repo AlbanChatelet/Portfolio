@@ -28,21 +28,21 @@ const toggleMenu = () => {
     </li>
     <li>
       <RouterLink 
-        to="/Home" 
+        to="/About" 
         class="bg-[#D8E4FA] text-black rounded-lg w-[153px] h-[60px] flex items-center justify-center shadow-lg transition-all duration-200 hover:shadow-xl font-source-code-pro font-bold">
         A PROPOS
       </RouterLink>
     </li>
     <li>
       <RouterLink 
-        to="/About" 
+        to="/projets" 
         class="bg-[#D8E4FA] text-black rounded-lg w-[153px] h-[60px] flex items-center justify-center shadow-lg transition-all duration-200 hover:shadow-xl font-source-code-pro font-bold">
         PROJETS
       </RouterLink>
     </li>
     <li>
       <RouterLink 
-        to="/Contact" 
+        to="/contact" 
         class="bg-[#D8E4FA] text-black rounded-lg w-[153px] h-[60px] flex items-center justify-center shadow-lg transition-all duration-200 hover:shadow-xl font-source-code-pro font-bold">
         CONTACT
       </RouterLink>
@@ -68,9 +68,9 @@ const toggleMenu = () => {
         <!-- Liens du menu mobile -->
         <nav class="flex flex-col items-start space-y-2 font-spartan w-full">
           <RouterLink @click="toggleMenu" to="/" class="text-black text-lg font-source-code-pro font-bold border-b border-gray-300 py-2 w-full">ACCUEIL</RouterLink>
-          <RouterLink @click="toggleMenu" to="/Home" class="text-black text-lg font-source-code-pro font-bold  border-b border-gray-300 py-2 w-full">A PROPOS</RouterLink>
-          <RouterLink @click="toggleMenu" to="/About" class="text-black text-lg font-source-code-pro font-bold  border-b border-gray-300 py-2 w-full">PROJETS</RouterLink>
-          <RouterLink @click="toggleMenu" to="/Contact" class="text-black text-lg font-source-code-pro  font-bold py-2 w-full">CONTACT</RouterLink>
+          <RouterLink @click="toggleMenu" to="/About" class="text-black text-lg font-source-code-pro font-bold  border-b border-gray-300 py-2 w-full">A PROPOS</RouterLink>
+          <RouterLink @click="toggleMenu" to="/projets" class="text-black text-lg font-source-code-pro font-bold  border-b border-gray-300 py-2 w-full">PROJETS</RouterLink>
+          <RouterLink @click="toggleMenu" to="/contact" class="text-black text-lg font-source-code-pro  font-bold py-2 w-full">CONTACT</RouterLink>
         </nav>
       </div>
     </transition>
