@@ -5,24 +5,14 @@ import HeaderPage from './components/HeaderPage.vue';
 
 <template>
   <header>
-
-    <div class="wrapper">
-      
+    <div class="wrapper bg-[#DEF5FF]">
       <HeaderPage />
-      <nav>
-        <ul>
-          <RouterLink to="/">Accueil</RouterLink>
-          
-          <RouterLink to="/projets">projets</RouterLink>
-          <RouterLink to="/guide-de-style">Guide de style</RouterLink>
-        </ul>
-      </nav>
     </div>
   </header>
-  <main>
+  <main> <!-- Ajout d'un margin-top -->
     <Suspense>
-    <RouterView /></Suspense>
-    </main>
-  
+      <RouterView />
+    </Suspense>
+  </main>
 </template>
 
