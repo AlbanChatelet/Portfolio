@@ -4,6 +4,47 @@ import fondImage from '@/assets/fond.webp';
 import barreSeparation from '@/assets/icons/barre-separation.vue';
 import phoneIcon from '@/assets/icons/phone-icon.vue';
 import pingIcon from '@/assets/icons/ping-icon.vue';
+import PocketBase from 'pocketbase';
+import ImgPb from '@/components/ImgPb.vue'; // Chemin à ajuster si nécessaire
+import type { CompetencesResponse, LogicielsResponse } from '@/pocketbase-types'; // Types générés par PocketBase Typegen
+// Crée une instance de PocketBase
+const pb = new PocketBase('http://127.0.0.1:8090'); // Assurez-vous que l'URL est correcte
+
+// Variable réactive pour stocker les compétences
+const competences = ref<CompetencesResponse[]>([]);
+
+// Variable réactive pour stocker les logiciels
+const logiciels = ref<LogicielsResponse[]>([]);
+
+// Fonction pour récupérer toutes les compétences depuis PocketBase
+const fetchCompetences = async () => {
+  try {
+    const result = await pb.collection('competences').getFullList<CompetencesResponse>({
+      sort: '-created', // Tri des compétences par date de création (si nécessaire)
+    });
+    competences.value = result;
+  } catch (error) {
+    console.error("Erreur lors de la récupération des compétences :", error);
+  }
+};
+
+// Fonction pour récupérer tous les logiciels depuis PocketBase
+const fetchLogiciels = async () => {
+  try {
+    const result = await pb.collection('logiciels').getFullList<LogicielsResponse>({
+      sort: '-created', // Tri des logiciels par date de création (si nécessaire)
+    });
+    logiciels.value = result;
+  } catch (error) {
+    console.error("Erreur lors de la récupération des logiciels :", error);
+  }
+};
+
+// Récupère les compétences et les logiciels au montage du composant
+onMounted(() => {
+  fetchCompetences();
+  fetchLogiciels();
+});
 // Fonction pour l'effet de machine à écrire en boucle
 function animateTextLoop() {
   const elements = document.querySelectorAll(".animate-text");
@@ -79,7 +120,7 @@ onMounted(() => {
     <barreSeparation class="mt-4" /> <!-- Ajoutez une marge supérieure pour espacer -->
   </div>
   <div class="flex flex-col md:flex-row items-start pt-4 md:pt-8 mx-4 md:mx-48"> <!-- Modifier ml-40 par mx-4 pour une marge responsive -->
-    <div class="md:w-1/2 max-w-screen-md p-4"> <!-- Colonne de gauche -->
+    <div class="md:w-1/2 max-w-screen-md p-4 pb-16"> <!-- Colonne de gauche -->
   <h2 class="font-source-sans-3 text-4xl md:text-5xl font-bold text-[#1F0032]">Qui suis-je ?</h2> <!-- Ajustement de la taille du texte -->
   
   <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-8">Je suis un jeune <span class="font-semibold text-black">développeur Web full stack</span> axé sur le <span class="font-semibold text-black">front-end</span>, qui crée et gère le front-end des sites Web et des applications Web. Découvrez mes travaux dans la section <span class="font-semibold text-black">Projets</span> !</p>
@@ -94,7 +135,7 @@ onMounted(() => {
     <div class="md:w-1/2 p-4 md:mx-20"> <!-- Colonne de droite -->
   
   <div class="flex items-start flex-col md:flex-row md:pt-16"> <!-- Flex pour aligner l'image et les icônes -->
-    <img src="../assets/portrait.webp" alt="" class="h-[250px] md:h-[210px] object-cover mb-4 ml-10 md:mb-0"> <!-- Ajustement de la taille de l'image -->
+    <img src="../assets/portrait.webp" alt="" class="h-[250px] md:h-[210px] object-cover mb-4 ml-10 md:mb-0 transition-transform transform hover:scale-105"> <!-- Ajustement de la taille de l'image -->
     
     <div class="flex flex-col ml-4"> <!-- Utilisation de flex-col pour empiler les éléments sur mobile -->
       <div class="flex items-center mb-4 md:mb-6 md:mt-4"> <!-- Ajustement de la marge -->
@@ -115,11 +156,54 @@ onMounted(() => {
     <p class="text-white font-handjet text-2xl md:text-3xl">Contact</p>
   </div>
 </div>
-
-
-
   </div>
 </section>
+
+<section class="bg-cover bg-center flex flex-col items-center justify-start py-12 sm:py-10 px-4 text-center relative" :style="{ backgroundImage: `url(${fondImage})` }">
+  <div class="container mx-auto my-8 px-4 grid grid-cols-2 gap-8">
+    <!-- Section Compétences (gauche) -->
+    <div>
+      <h2 class="font-source-sans-3 text-4xl md:text-5xl font-bold text-[#1F0032] mb-8 text-left">Compétences</h2>
+
+      <div class="flex flex-wrap gap-10">
+        <div 
+          v-for="competence in competences" 
+          :key="competence.id"
+          class="inline-block rounded-md px-16 py-4 text-center bg-mise-en-evidence font-poppins text-2xl text-white transition-transform transform hover:scale-105 hover:shadow-lg" 
+        >
+          {{ competence.nom_competence }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Logiciels (droite) -->
+    <div>
+      <h2 class="font-source-sans-3 text-4xl md:text-5xl font-bold text-[#1F0032] mb-4 text-left ml-4">Logiciels</h2>
+      <div class="grid grid-cols-3 gap-6 justify-center">
+        <div 
+          v-for="logiciel in logiciels" 
+          :key="logiciel.id"
+          class="flex flex-col items-center"
+        >
+          <ImgPb 
+            v-if="logiciel.logo_logiciel" 
+            :record="logiciel" 
+            :filename="logiciel.logo_logiciel" 
+            width="108" 
+            height="108" 
+            class="transition-transform transform hover:scale-105"
+          />
+          <div class="rounded-md px-9 py-4 text-center bg-mise-en-evidence font-poppins text-2xl text-white mt-4 transition-transform transform hover:scale-105 hover:shadow-lg"> <!-- Ajout des classes d'effet de survol -->
+            {{ logiciel.nom_logiciel }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 
 </template>
 
@@ -136,5 +220,9 @@ onMounted(() => {
 
 .project-button:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Ombre plus forte au survol */
+}
+
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
 }
 </style>
