@@ -4,46 +4,26 @@ import fondImage from '@/assets/fond.webp';
 import barreSeparation from '@/assets/icons/barre-separation.vue';
 import phoneIcon from '@/assets/icons/phone-icon.vue';
 import pingIcon from '@/assets/icons/ping-icon.vue';
-import PocketBase from 'pocketbase';
+
 import ImgPb from '@/components/ImgPb.vue'; // Chemin à ajuster si nécessaire
-import type { CompetencesResponse, LogicielsResponse } from '@/pocketbase-types'; // Types générés par PocketBase Typegen
-// Crée une instance de PocketBase
-const pb = new PocketBase('http://127.0.0.1:8090'); // Assurez-vous que l'URL est correcte
+
+import { fetchCompetences, fetchLogiciels } from '@/backend'; // Assurez-vous d'importer les deux fonctions
 
 // Variable réactive pour stocker les compétences
-const competences = ref<CompetencesResponse[]>([]);
+const competences = ref([]);
 
+const logiciels = ref([]);
 // Variable réactive pour stocker les logiciels
-const logiciels = ref<LogicielsResponse[]>([]);
 
 // Fonction pour récupérer toutes les compétences depuis PocketBase
-const fetchCompetences = async () => {
-  try {
-    const result = await pb.collection('competences').getFullList<CompetencesResponse>({
-      sort: '-created', // Tri des compétences par date de création (si nécessaire)
-    });
-    competences.value = result;
-  } catch (error) {
-    console.error("Erreur lors de la récupération des compétences :", error);
-  }
-};
+
 
 // Fonction pour récupérer tous les logiciels depuis PocketBase
-const fetchLogiciels = async () => {
-  try {
-    const result = await pb.collection('logiciels').getFullList<LogicielsResponse>({
-      sort: '-created', // Tri des logiciels par date de création (si nécessaire)
-    });
-    logiciels.value = result;
-  } catch (error) {
-    console.error("Erreur lors de la récupération des logiciels :", error);
-  }
-};
 
 // Récupère les compétences et les logiciels au montage du composant
-onMounted(() => {
-  fetchCompetences();
-  fetchLogiciels();
+onMounted(async () => {
+  competences.value = await fetchCompetences();
+  logiciels.value = await fetchLogiciels();
 });
 // Fonction pour l'effet de machine à écrire en boucle
 function animateTextLoop() {
@@ -191,7 +171,7 @@ onMounted(() => {
             v-if="logiciel.logo_logiciel" 
             :record="logiciel" 
             :filename="logiciel.logo_logiciel" 
-            width="64" height="64" 
+            width="128" height="128" 
             class="transition-transform transform hover:scale-105"
           />
           <div class="rounded-md px-6 py-2 sm:px-9 sm:py-4 bg-mise-en-evidence font-poppins text-base sm:text-2xl text-white mt-2 sm:mt-4 transition-transform transform hover:scale-105 hover:shadow-lg">
@@ -211,7 +191,7 @@ onMounted(() => {
   </div>
 
   <div class="flex justify-center">
-    <h2 class="font-source-sans-3 text-lg text-[#555555] text-center max-w-md mx-4 pt-8">
+    <h2 class="font-source-sans-3 text-lg text-[#555555] text-center max-w-md mx-4 pt-8 md:text-[20px]">
       Vous trouverez ici quelques-uns des <span class="font-semibold text-black">projets</span> que j'ai créés, que ce soit pour mes <span class="font-semibold text-black">études</span> ou dans un cadre <span class="font-semibold text-black">personnel</span>
     </h2>
   </div>
