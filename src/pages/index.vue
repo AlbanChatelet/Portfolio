@@ -152,24 +152,25 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  <div class="w-[180px] md:w-[200px] h-[48px] rounded-[5px] bg-interactions flex items-center justify-center mt-4 project-button ml-16 md:ml-12 md:mt-10">
+  <div class="w-[180px] md:w-[200px] h-[48px] rounded-[5px] bg-interactions flex items-center justify-center mt-4 mb-12 project-button ml-16 md:ml-12 md:mt-10">
     <p class="text-white font-handjet text-2xl md:text-3xl">Contact</p>
   </div>
 </div>
   </div>
 </section>
 
-<section class="bg-cover bg-center flex flex-col items-center justify-start py-12 sm:py-10 px-4 text-center relative" :style="{ backgroundImage: `url(${fondImage})` }">
-  <div class="container mx-auto my-8 px-4 grid grid-cols-2 gap-8">
+<section class="bg-cover bg-center py-2 sm:py-10 px-4 relative" :style="{ backgroundImage: `url(${fondImage})` }">
+  <div class="container mx-auto my-8 px-4 grid grid-cols-1 sm:grid-cols-2 gap-8">
+    
     <!-- Section Compétences (gauche) -->
     <div>
-      <h2 class="font-source-sans-3 text-4xl md:text-5xl font-bold text-[#1F0032] mb-8 text-left">Compétences</h2>
-
-      <div class="flex flex-wrap gap-10">
+      <h2 class="font-source-sans-3 text-3xl sm:text-4xl md:text-5xl font-bold text-[#1F0032] mb-8 text-left">Compétences</h2>
+      
+      <div class="flex flex-wrap gap-4 sm:gap-6 justify-start items-start"> <!-- Alignement gauche -->
         <div 
           v-for="competence in competences" 
           :key="competence.id"
-          class="inline-block rounded-md px-16 py-4 text-center bg-mise-en-evidence font-poppins text-2xl text-white transition-transform transform hover:scale-105 hover:shadow-lg" 
+          class="inline-block rounded-md px-8 py-2 sm:px-16 sm:py-4 bg-mise-en-evidence font-poppins text-base sm:text-2xl text-white transition-transform transform hover:scale-105 hover:shadow-lg" 
         >
           {{ competence.nom_competence }}
         </div>
@@ -178,8 +179,9 @@ onMounted(() => {
 
     <!-- Section Logiciels (droite) -->
     <div>
-      <h2 class="font-source-sans-3 text-4xl md:text-5xl font-bold text-[#1F0032] mb-4 text-left ml-4">Logiciels</h2>
-      <div class="grid grid-cols-3 gap-6 justify-center">
+      <h2 class="font-source-sans-3 text-3xl sm:text-4xl md:text-5xl font-bold text-[#1F0032] mb-4 text-left md:ml-6">Logiciels</h2>
+      
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
         <div 
           v-for="logiciel in logiciels" 
           :key="logiciel.id"
@@ -189,16 +191,29 @@ onMounted(() => {
             v-if="logiciel.logo_logiciel" 
             :record="logiciel" 
             :filename="logiciel.logo_logiciel" 
-            width="108" 
-            height="108" 
+            width="64" height="64" 
             class="transition-transform transform hover:scale-105"
           />
-          <div class="rounded-md px-9 py-4 text-center bg-mise-en-evidence font-poppins text-2xl text-white mt-4 transition-transform transform hover:scale-105 hover:shadow-lg"> <!-- Ajout des classes d'effet de survol -->
+          <div class="rounded-md px-6 py-2 sm:px-9 sm:py-4 bg-mise-en-evidence font-poppins text-base sm:text-2xl text-white mt-2 sm:mt-4 transition-transform transform hover:scale-105 hover:shadow-lg">
             {{ logiciel.nom_logiciel }}
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+
+<section class="bg-[#DEF5FF]">
+  <div class="flex flex-col items-center text-center pt-8">
+    <p class="font-source-code-pro text-4xl font-semibold text-[#1F0032]">MES PROJETS</p>
+    <barreSeparation class="mt-4" /> <!-- Ajoutez une marge supérieure pour espacer -->
+  </div>
+
+  <div class="flex justify-center">
+    <h2 class="font-source-sans-3 text-lg text-[#555555] text-center max-w-md mx-4 pt-8">
+      Vous trouverez ici quelques-uns des <span class="font-semibold text-black">projets</span> que j'ai créés, que ce soit pour mes <span class="font-semibold text-black">études</span> ou dans un cadre <span class="font-semibold text-black">personnel</span>
+    </h2>
   </div>
 </section>
 
