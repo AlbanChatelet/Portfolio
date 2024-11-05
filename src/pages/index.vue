@@ -4,15 +4,27 @@ import fondImage from '@/assets/fond.webp';
 import barreSeparation from '@/assets/icons/barre-separation.vue';
 import phoneIcon from '@/assets/icons/phone-icon.vue';
 import pingIcon from '@/assets/icons/ping-icon.vue';
-
+import computerIcon from '@/assets/icons/computer-icon.vue';
+import collectifIcon from '@/assets/icons/collectif-icon.vue';
 import ImgPb from '@/components/ImgPb.vue'; // Chemin à ajuster si nécessaire
-
-import { fetchCompetences, fetchLogiciels } from '@/backend'; // Assurez-vous d'importer les deux fonctions
+import grandeBarreSeparation from '@/assets/icons/grande-barre-separation.vue';
+import { fetchCompetences, fetchLogiciels, fetchProjects } from '@/backend'; // Assurez-vous d'importer les deux fonctions
 
 // Variable réactive pour stocker les compétences
-const competences = ref([]);
+interface Competence {
+  id: string;
+  nom_competence: string;
+}
 
-const logiciels = ref([]);
+interface Logiciel {
+  id: string;
+  nom_logiciel: string;
+  logo_logiciel?: string;
+}
+
+const competences = ref<Competence[]>([]);
+const logiciels = ref<Logiciel[]>([]);
+const projets = ref<any[]>([]);
 // Variable réactive pour stocker les logiciels
 
 // Fonction pour récupérer toutes les compétences depuis PocketBase
@@ -24,6 +36,7 @@ const logiciels = ref([]);
 onMounted(async () => {
   competences.value = await fetchCompetences();
   logiciels.value = await fetchLogiciels();
+  projets.value = await fetchProjects();
 });
 // Fonction pour l'effet de machine à écrire en boucle
 function animateTextLoop() {
@@ -89,12 +102,15 @@ onMounted(() => {
       Un développeur Web Full Stack
     </h2>
     <!-- Bouton Projets -->
-    <div class="w-[210px] h-[52px] rounded-[5px] bg-interactions flex items-center justify-center mt-20 project-button">
+    <div class="w-[210px] h-[52px] rounded-[5px] bg-interactions flex items-center justify-center project-button mt-20 ">
       <p class="text-white font-handjet text-3xl">Projets</p>
     </div>
   </header>
 
-  <section class="bg-[#DEF5FF]">
+
+  <!-- SECTION A PROPOS -->
+
+  <section id="apropos" class="bg-[#DEF5FF]">
   <div class="flex flex-col items-center text-center pt-8">
     <p class="font-source-code-pro text-4xl font-semibold text-[#1F0032]">A PROPOS</p>
     <barreSeparation class="mt-4" /> <!-- Ajoutez une marge supérieure pour espacer -->
@@ -139,7 +155,10 @@ onMounted(() => {
   </div>
 </section>
 
-<section class="bg-cover bg-center py-2 sm:py-10 px-4 relative" :style="{ backgroundImage: `url(${fondImage})` }">
+
+
+
+<section id="competences" class="bg-cover bg-center py-2 sm:py-10 px-4 relative" :style="{ backgroundImage: `url(${fondImage})` }">
   <div class="container mx-auto my-8 px-4 grid grid-cols-1 sm:grid-cols-2 gap-8">
     
     <!-- Section Compétences (gauche) -->
@@ -183,19 +202,96 @@ onMounted(() => {
   </div>
 </section>
 
+<!-- SECTION PROJETS -->
 
-<section class="bg-[#DEF5FF]">
-  <div class="flex flex-col items-center text-center pt-8">
-    <p class="font-source-code-pro text-4xl font-semibold text-[#1F0032]">MES PROJETS</p>
-    <barreSeparation class="mt-4" /> <!-- Ajoutez une marge supérieure pour espacer -->
+<section id="projets" class="bg-[#DEF5FF] py-8">
+  <!-- Titre de la section -->
+  <div class="flex flex-col items-center text-center">
+    <p class="font-source-code-pro text-4xl font-semibold text-[#1F0032] md:text-5xl">MES PROJETS</p>
+    <barreSeparation class="mt-4" /> <!-- Barre de séparation avec une marge supérieure -->
   </div>
 
+  <!-- Sous-titre de la section -->
   <div class="flex justify-center">
-    <h2 class="font-source-sans-3 text-lg text-[#555555] text-center max-w-md mx-4 pt-8 md:text-[20px]">
+    <h2 class="font-source-sans-3 text-md md:text-lg text-[#555555] text-center max-w-md mx-4 pt-8">
       Vous trouverez ici quelques-uns des <span class="font-semibold text-black">projets</span> que j'ai créés, que ce soit pour mes <span class="font-semibold text-black">études</span> ou dans un cadre <span class="font-semibold text-black">personnel</span>
     </h2>
   </div>
+  
+      
+
+  <!-- Liste des projets -->
+  <!-- Liste des projets -->
+<div class="my-8 w-full max-w-[100rem] mx-auto">
+  <div class=" flex justify-center">
+    <grandeBarreSeparation /> <!-- Grande barre de séparation -->
+  </div>
+
+  <div 
+    v-for="projet in projets" 
+    :key="projet.id" 
+    class="flex flex-col md:flex-row items-center justify-center w-full py-12"
+  >
+    <!-- Partie gauche : Aperçu du projet -->
+    <div class="w-full md:w-6/12">
+      <ImgPb 
+        v-if="projet.apercu_projet" 
+        :record="projet" 
+        :filename="projet.apercu_projet" 
+        width="300" height="150" 
+        class="transition-transform transform hover:scale-105 w-10/12 mx-auto h-auto" 
+      />
+    </div>
+
+    <!-- Partie droite : Détails du projet -->
+    <div class="w-full md:w-6/12 p-4 md:p-8 flex flex-col justify-between">
+      <!-- Nom du projet -->
+      <h2 class="font-haut-de-page text-3xl md:text-4xl font-[500] text-center md:text-left mb-4">{{ projet.nom_projet }}</h2>
+
+      <!-- Description du projet -->
+      <p class="font-source-sans-3 text-md md:text-lg text-[#555555] mb-4 md:text-left text-center">{{ projet.description_projet }}</p>
+
+      <!-- Bouton Voir et Icônes Support et Groupe -->
+      <div class="flex flex-col md:flex-row items-center justify-between md:mt-4"> <!-- Disposition en ligne sur desktop -->
+        <button class="bg-interactions text-white font-handjet text-2xl md:text-3xl w-[160px] md:w-[200px] h-[40px] md:h-[48px] rounded-lg flex items-center justify-center project-button transition-transform transform hover:scale-105 hover:shadow-lg mb-4 md:mb-0">
+          Voir
+        </button>
+        
+        <!-- Icônes Support et Groupe -->
+        <div class="flex items-center space-x-4"> <!-- Alignement sur une même ligne -->
+          <div class="flex items-center text-md md:text-lg">
+            <computerIcon class="mr-2"/>
+            <span class="font-source-sans-3 text-md md:text-lg text-[#555555]">{{ projet.support }}</span>
+          </div>
+          <div class="flex items-center text-md md:text-lg">
+            <collectifIcon class="mr-2"/>
+            <span class="font-source-sans-3 text-md md:text-lg text-[#555555]">{{ projet.groupe }}</span>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  
+</div>
+
 </section>
+
+
+<!-- SECTION CONTACT -->
+<section id="contact" class="bg-cover bg-center py-2 sm:py-10 px-4 relative" :style="{ backgroundImage: `url(${fondImage})` }">
+     <!-- Titre de la section -->
+  <div class="flex flex-col items-center text-center">
+    <p class="font-source-code-pro text-4xl font-semibold text-[#1F0032] md:text-5xl">CONTACT</p>
+    
+  </div>
+
+
+</section>
+
+
 
 
 

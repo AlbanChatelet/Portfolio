@@ -7,10 +7,18 @@ const isMenuOpen = ref(false);
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
+
+function scrollToSection(sectionId: string) {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
 </script>
 
 <template>
-  <header class="bg-[#D8E4FA] text-black p-4 flex items-center justify-between relative shadow-md z-50">
+  <header class="bg-[#D8E4FA] text-black p-4 flex items-center justify-between fixed top-0 left-0 w-full shadow-md z-50">
     <!-- Logo -->
     <RouterLink to="/" class="flex items-center ml-4">
       <img class="h-12" src="../assets/logo.webp" alt="Logo" />
@@ -20,32 +28,32 @@ const toggleMenu = () => {
     <nav class="hidden md:flex items-center space-x-8">
       <ul class="flex space-x-8">
         <li>
-          <RouterLink 
-            to="/" 
+          <button 
+            @click="scrollToSection('home')" 
             class="bg-[#D8E4FA] text-black rounded-lg w-[153px] h-[60px] flex items-center justify-center shadow-lg transition-all duration-200 hover:shadow-xl font-source-code-pro font-bold">
             ACCUEIL
-          </RouterLink>
+          </button>
         </li>
         <li>
-          <RouterLink 
-            to="/About" 
+          <button 
+            @click="scrollToSection('apropos')" 
             class="bg-[#D8E4FA] text-black rounded-lg w-[153px] h-[60px] flex items-center justify-center shadow-lg transition-all duration-200 hover:shadow-xl font-source-code-pro font-bold">
             A PROPOS
-          </RouterLink>
+          </button>
         </li>
         <li>
-          <RouterLink 
-            to="/projets" 
+          <button 
+            @click="scrollToSection('projets')" 
             class="bg-[#D8E4FA] text-black rounded-lg w-[153px] h-[60px] flex items-center justify-center shadow-lg transition-all duration-200 hover:shadow-xl font-source-code-pro font-bold">
             PROJETS
-          </RouterLink>
+          </button>
         </li>
         <li>
-          <RouterLink 
-            to="/contact" 
+          <button 
+            @click="scrollToSection('contact')" 
             class="bg-[#D8E4FA] text-black rounded-lg w-[153px] h-[60px] flex items-center justify-center shadow-lg transition-all duration-200 hover:shadow-xl font-source-code-pro font-bold">
             CONTACT
-          </RouterLink>
+          </button>
         </li>
       </ul>
     </nav>
@@ -67,10 +75,26 @@ const toggleMenu = () => {
       <div v-if="isMenuOpen" class="absolute top-16 right-0 w-full bg-[#D8E4FA] z-50 flex flex-col p-4 md:hidden shadow-lg shadow-gray-500/50">
         <!-- Liens du menu mobile -->
         <nav class="flex flex-col items-start space-y-2 font-spartan w-full">
-          <RouterLink @click="toggleMenu" to="/" class="text-black text-lg font-source-code-pro font-bold border-b border-gray-300 py-2 w-full">ACCUEIL</RouterLink>
-          <RouterLink @click="toggleMenu" to="/About" class="text-black text-lg font-source-code-pro font-bold  border-b border-gray-300 py-2 w-full">A PROPOS</RouterLink>
-          <RouterLink @click="toggleMenu" to="/projets" class="text-black text-lg font-source-code-pro font-bold  border-b border-gray-300 py-2 w-full">PROJETS</RouterLink>
-          <RouterLink @click="toggleMenu" to="/contact" class="text-black text-lg font-source-code-pro font-bold py-2 w-full">CONTACT</RouterLink>
+          <button 
+            @click="() => { scrollToSection('home'); toggleMenu(); }" 
+            class="text-black text-lg font-source-code-pro font-bold border-b border-gray-300 py-2 w-full">
+            ACCUEIL
+          </button>
+          <button 
+            @click="() => { scrollToSection('apropos'); toggleMenu(); }" 
+            class="text-black text-lg font-source-code-pro font-bold border-b border-gray-300 py-2 w-full">
+            A PROPOS
+          </button>
+          <button 
+            @click="() => { scrollToSection('projets'); toggleMenu(); }" 
+            class="text-black text-lg font-source-code-pro font-bold border-b border-gray-300 py-2 w-full">
+            PROJETS
+          </button>
+          <button 
+            @click="() => { scrollToSection('contact'); toggleMenu(); }" 
+            class="text-black text-lg font-source-code-pro font-bold py-2 w-full">
+            CONTACT
+          </button>
         </nav>
       </div>
     </transition>
@@ -98,4 +122,5 @@ const toggleMenu = () => {
   transform: translateY(-20px);
   opacity: 0;
 }
+
 </style>
