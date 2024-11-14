@@ -5,7 +5,9 @@ import barreSeparation from '@/assets/icons/barre-separation.vue';
 import phoneIcon from '@/assets/icons/phone-icon.vue';
 import pingIcon from '@/assets/icons/ping-icon.vue';
 import computerIcon from '@/assets/icons/computer-icon.vue';
+import MobileIcon from '@/assets/icons/mobile-icon.vue';
 import collectifIcon from '@/assets/icons/collectif-icon.vue';
+import soloIcon from '@/assets/icons/solo-icon.vue';
 import ImgPb from '@/components/ImgPb.vue'; // Chemin à ajuster si nécessaire
 import grandeBarreSeparation from '@/assets/icons/grande-barre-separation.vue';
 import { fetchCompetences, fetchLogiciels, fetchProjects } from '@/backend'; // Assurez-vous d'importer les deux fonctions
@@ -260,11 +262,11 @@ onMounted(() => {
         <!-- Icônes Support et Groupe -->
         <div class="flex items-center space-x-4"> <!-- Alignement sur une même ligne -->
           <div class="flex items-center text-md md:text-lg">
-            <computerIcon class="mr-2"/>
+            <component :is="projet.support === 'Mobile First' ? MobileIcon : computerIcon" class="w-8 h-8 mr-2"/>
             <span class="font-source-sans-3 text-md md:text-lg text-[#555555]">{{ projet.support }}</span>
           </div>
           <div class="flex items-center text-md md:text-lg">
-            <collectifIcon class="mr-2"/>
+            <component :is="projet.groupe === 'Solo' ? soloIcon : collectifIcon" class="w-12 h-12 mr-2"/>
             <span class="font-source-sans-3 text-md md:text-lg text-[#555555]">{{ projet.groupe }}</span>
           </div>
           
