@@ -94,7 +94,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <header class="bg-cover bg-center flex flex-col items-center justify-start py-12 sm:py-32 px-4 text-center relative" :style="{ backgroundImage: `url(${fondImage})` }">
+  <header id="home" class="bg-cover bg-center flex flex-col items-center justify-start py-12 sm:py-32 px-4 text-center relative" :style="{ backgroundImage: `url(${fondImage})` }">
     <h1 class="animate-text font-haut-de-page text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-8 tracking-tight sm:tracking-normal relative" data-text="Hey ! Je suis Alban Chatelet">
       H
     </h1>
