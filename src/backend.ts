@@ -42,21 +42,35 @@ export async function fetchProjects() {
 // Fonction pour récupérer les compétences
 export async function fetchCompetences() {
   try {
-    const competences = await pb.collection('competences').getFullList();
-    return competences;
+    const competences = await pb.collection('competences').getFullList()
+    return competences
   } catch (error) {
-    console.error('Error fetching competences:', error);
-    return [];
+    console.error('Error fetching competences:', error)
+    return []
   }
 }
 
 // Fonction pour récupérer les logiciels
 export async function fetchLogiciels() {
   try {
-    const logiciels = await pb.collection('logiciels').getFullList();
-    return logiciels;
+    const logiciels = await pb.collection('logiciels').getFullList()
+    return logiciels
   } catch (error) {
-    console.error('Error fetching logiciels:', error);
-    return [];
+    console.error('Error fetching logiciels:', error)
+    return []
+  }
+}
+
+export async function fetchProjectById(id: string) {
+  try {
+    const response = await fetch(`http://127.0.0.1:8090/api/projets/${id}`) // Remplace avec l'API que tu utilises
+    if (!response.ok) {
+      throw new Error('Erreur de chargement du projet')
+    }
+    const data = await response.json()
+    return data // Retourne les données du projet
+  } catch (error) {
+    console.error('Erreur:', error)
+    return null // Retourne null en cas d'erreur
   }
 }

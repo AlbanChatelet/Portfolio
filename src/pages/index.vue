@@ -255,9 +255,11 @@ onMounted(() => {
 
       <!-- Bouton Voir et Icônes Support et Groupe -->
       <div class="flex flex-col md:flex-row items-center justify-between md:mt-4"> <!-- Disposition en ligne sur desktop -->
-        <button class="bg-interactions text-white font-handjet text-2xl md:text-3xl w-[160px] md:w-[200px] h-[40px] md:h-[48px] rounded-lg flex items-center justify-center project-button transition-transform transform hover:scale-105 hover:shadow-lg mb-4 md:mb-0">
-          Voir
-        </button>
+        <router-link :to="`/projets/${projet.id}`">
+  <button class="bg-interactions text-white font-handjet text-2xl md:text-3xl w-[160px] md:w-[200px] h-[40px] md:h-[48px] rounded-lg flex items-center justify-center project-button transition-transform transform hover:scale-105 hover:shadow-lg mb-4 md:mb-0">
+    Voir
+  </button>
+</router-link>
         
         <!-- Icônes Support et Groupe -->
         <div class="flex items-center space-x-4"> <!-- Alignement sur une même ligne -->
@@ -294,21 +296,21 @@ onMounted(() => {
     <form action="#" method="POST" class="space-y-6">
       <!-- Champ Nom -->
       <div>
-        <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
+        <label for="name" class="block text-sm font-medium text-gray-700 font-haut-de-page">Nom</label>
         <input type="text" id="name" name="name" required
           class="mt-1 block w-full px-4 py-2 border border-[#C7DFFD] bg-[#C7DFFD] rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
       </div>
 
       <!-- Champ Email -->
       <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <label for="email" class="block text-sm font-medium text-gray-700 font-haut-de-page">Email</label>
         <input type="email" id="email" name="email" required
           class="mt-1 block w-full px-4 py-2 border border-[#C7DFFD] bg-[#C7DFFD] rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
       </div>
 
       <!-- Champ Message -->
       <div>
-        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+        <label for="message" class="block text-sm font-medium text-gray-700 font-haut-de-page">Message</label>
         <textarea id="message" name="message" rows="4" required
           class="mt-1 block w-full px-4 py-2 border border-[#C7DFFD] bg-[#C7DFFD] rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
       </div>
@@ -316,7 +318,7 @@ onMounted(() => {
       <!-- Bouton Envoyer -->
       <div class="flex justify-center">
         <button type="submit"
-          class="w-full md:w-auto px-24 py-3 bg-[#0094D3] text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-200">
+          class="w-full md:w-auto px-24 py-3 bg-[#0094D3] text-white font-haut-de-page md:text-2xl rounded-md hover:bg-[#00a9d3] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-200">
           Envoyer
         </button>
       </div>
