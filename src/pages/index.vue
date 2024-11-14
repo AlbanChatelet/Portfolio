@@ -18,6 +18,7 @@ interface Competence {
   nom_competence: string;
 }
 
+
 interface Logiciel {
   id: string;
   nom_logiciel: string;
