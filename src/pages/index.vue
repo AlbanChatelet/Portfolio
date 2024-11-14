@@ -281,12 +281,46 @@ onMounted(() => {
 
 
 <!-- SECTION CONTACT -->
-<section id="contact" class="bg-cover bg-center py-2 sm:py-10 px-4 relative" :style="{ backgroundImage: `url(${fondImage})` }">
-     <!-- Titre de la section -->
-  <div class="flex flex-col items-center text-center">
+<section id="contact" class="bg-cover bg-center py-10 px-4 sm:py-16 relative" :style="{ backgroundImage: `url(${fondImage})` }">
+  <!-- Titre de la section -->
+  <div class="flex flex-col items-center text-center mb-8">
     <p class="font-source-code-pro text-4xl font-semibold text-[#1F0032] md:text-5xl">CONTACT</p>
-    
   </div>
+
+  <!-- Formulaire de contact -->
+  <div class="max-w-lg mx-auto bg-[#DEF5FF] p-8 rounded-lg shadow-lg">
+    <form action="#" method="POST" class="space-y-6">
+      <!-- Champ Nom -->
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
+        <input type="text" id="name" name="name" required
+          class="mt-1 block w-full px-4 py-2 border border-[#C7DFFD] bg-[#C7DFFD] rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+      </div>
+
+      <!-- Champ Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" id="email" name="email" required
+          class="mt-1 block w-full px-4 py-2 border border-[#C7DFFD] bg-[#C7DFFD] rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+      </div>
+
+      <!-- Champ Message -->
+      <div>
+        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+        <textarea id="message" name="message" rows="4" required
+          class="mt-1 block w-full px-4 py-2 border border-[#C7DFFD] bg-[#C7DFFD] rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+      </div>
+
+      <!-- Bouton Envoyer -->
+      <div class="flex justify-center">
+        <button type="submit"
+          class="w-full md:w-auto px-24 py-3 bg-[#0094D3] text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-200">
+          Envoyer
+        </button>
+      </div>
+    </form>
+  </div>
+
 
 
 </section>
