@@ -1,10 +1,15 @@
 <template>
   <section v-if="projet">
-    <header class="bg-cover bg-center flex flex-col items-center justify-start py-12 sm:py-32 px-4 text-center relative" :style="{ backgroundImage: `url(${fondImage})` }">
-    <h2 class="font-handjet text-3xl md:text-8xl font-[500] text-center md:text-left mb-4 py-24">
+    <header class="bg-cover bg-center flex flex-col items-center justify-start mt-20 sm:py-32 px-4 text-center relative" :style="{ backgroundImage: `url(${fondImage})` }">
+    <h2 class="font-handjet text-3xl md:text-8xl font-[500] text-center md:text-left mb-4 ">
       {{ projet.nom_projet }}
     </h2>
-    <p class="font-handjet px-12 text-lg sm:text-xl md:text-xl lg:text-3xl mt-4 tracking-tight sm:tracking-normal text-gray-600">{{ projet.intitule }}</p>
+    <h2 class="font-handjet text-2xl md:text-4xl font-[400] text-center md:text-center pt-12 px-[400px]">
+      {{ projet.intitule }}
+    </h2>
+    <div class="w-[310px] h-[60px] rounded-[5px] bg-interactions flex items-center justify-center project-button mt-10 ">
+      <p class="text-white font-handjet text-4xl">Lien vers le site</p>
+    </div>
   </header>
 
 
@@ -76,3 +81,19 @@ onMounted(async () => {
   }
 });
 </script>
+
+<style scoped>
+/* Styles pour le bouton Projets */
+.project-button {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombre par défaut */
+  transition: box-shadow 0.3s ease; /* Transition douce pour l'effet */
+}
+
+.project-button:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Ombre plus forte au survol */
+}
+
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+}
+</style>
