@@ -1,9 +1,25 @@
 <template>
-  <div v-if="projet">
-    <h2 class="font-haut-de-page text-3xl md:text-4xl font-[500] text-center md:text-left mb-4 py-24">
+  <section v-if="projet">
+    <header class="bg-cover bg-center flex flex-col items-center justify-start py-12 sm:py-32 px-4 text-center relative" :style="{ backgroundImage: `url(${fondImage})` }">
+    <h2 class="font-handjet text-3xl md:text-8xl font-[500] text-center md:text-left mb-4 py-24">
       {{ projet.nom_projet }}
     </h2>
-    <p>{{ projet.intitule }}</p>
+    <p class="font-handjet px-12 text-lg sm:text-xl md:text-xl lg:text-3xl mt-4 tracking-tight sm:tracking-normal text-gray-600">{{ projet.intitule }}</p>
+  </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <p>{{ projet.p1 }}</p>
     <p>{{ projet.p2 }}</p>
     <p>{{ projet.p3 }}</p>
@@ -39,7 +55,7 @@
     <p>{{ projet.moi_1 }}</p>
     <p>{{ projet.moi_2 }}</p>
     <p>{{ projet.moi_3 }}</p>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -47,7 +63,7 @@ import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { fetchProjects } from '@/backend';
 import ImgPb from '@/components/ImgPb.vue';
-
+import fondImage from '@/assets/fond.webp';
 const projet = ref<any>(null);
 const route = useRoute();
 const projectId = route.params.id as string;

@@ -98,10 +98,10 @@ onMounted(() => {
 
 <template>
   <header id="home" class="bg-cover bg-center flex flex-col items-center justify-start py-12 sm:py-32 px-4 text-center relative" :style="{ backgroundImage: `url(${fondImage})` }">
-    <h1 class="animate-text font-haut-de-page text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-8 tracking-tight sm:tracking-normal relative" data-text="Hey ! Je suis Alban Chatelet">
+    <h1 class="animate-text font-handjet text-4xl sm:text-5xl md:text-8xl lg:text-8xl mt-16 tracking-tight sm:tracking-normal relative" data-text="Hey ! Je suis Alban Chatelet">
       H
     </h1>
-    <h2 class="font-haut-de-page text-lg sm:text-xl md:text-2xl lg:text-3xl mt-4 tracking-tight sm:tracking-normal text-gray-600">
+    <h2 class="font-handjet text-lg sm:text-xl md:text-2xl lg:text-3xl mt-4 tracking-tight sm:tracking-normal text-gray-600">
       Un développeur Web Full Stack
     </h2>
     <!-- Bouton Projets -->
