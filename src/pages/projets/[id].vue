@@ -36,6 +36,9 @@
         <p>{{ competence.nom_competence }}</p>
       </li>
     </ul>
+    <p>{{ projet.moi_1 }}</p>
+    <p>{{ projet.moi_2 }}</p>
+    <p>{{ projet.moi_3 }}</p>
   </div>
 </template>
 
