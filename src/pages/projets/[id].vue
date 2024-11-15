@@ -63,7 +63,7 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="ProjectDetails">
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { fetchProjects } from '@/backend';
@@ -71,7 +71,7 @@ import ImgPb from '@/components/ImgPb.vue';
 import fondImage from '@/assets/fond.webp';
 const projet = ref<any>(null);
 const route = useRoute();
-const projectId = route.params.id as string;
+const projectId = (route.params as { id: string }).id;
 
 onMounted(async () => {
   const projets = await fetchProjects();
