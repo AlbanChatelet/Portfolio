@@ -28,9 +28,12 @@ export async function loginWithGoogle() {
   console.log('loginWithGoogle authData', authData)
 }
 
+// Récupération de tous les projets avec les compétences liées
 export async function fetchProjects() {
   try {
-    const projects = await pb.collection('projets').getFullList()
+    const projects = await pb.collection('projets').getFullList({
+      expand: 'competences' // Expande la relation avec les compétences
+    })
     console.log('Projects:', projects)
     return projects
   } catch (error) {
@@ -61,6 +64,7 @@ export async function fetchLogiciels() {
   }
 }
 
+// Récupération d'un projet spécifique par ID
 export async function fetchProjectById(id: string) {
   try {
     const response = await fetch(`http://127.0.0.1:8090/api/projets/${id}`) // Remplace avec l'API que tu utilises
