@@ -22,30 +22,74 @@
 
 
 
-
+  <section class="bg-[#DEF5FF]">
     <div class="flex flex-col md:flex-row items-start pt-4 md:pt-8 mx-4 md:mx-48"> <!-- Modifier ml-40 par mx-4 pour une marge responsive -->
     <div class="md:w-1/2 max-w-screen-md p-4 pb-16"> <!-- Colonne de gauche -->
-
-    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-8">{{ projet.p1 }}</p>
-    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-8">{{ projet.p2 }}</p>
-    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-8">{{ projet.p3 }}</p>
-    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-8">{{ projet.p4 }}</p>
-    </div></div>
-    <!-- Section pour les images -->
-    <section>
-      <div v-for="(image, index) in [projet.mockup, projet.f1, projet.f2, projet.f3, projet.f4, projet.f5, projet.f6, projet.f7]" :key="index" class="">
-        <ImgPb v-if="image" :record="projet" :filename="image" width="auto" height="132" class="h-[200px] w-auto" />
+      <h2 class="font-source-sans-3 text-4xl md:text-5xl font-bold text-[#1F0032] pb-6">{{ projet.nom_projet }}, c'est quoi ?</h2> <!-- Ajustement de la taille du texte -->
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p1 }}</p>
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p2 }}</p>
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p3 }}</p>
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p4 }}</p>
+    </div>
+    <div class="md:w-1/2 md:mx-20"> <!-- Colonne de droite -->
+      <ImgPb 
+        v-if="projet.mockup" 
+        :record="projet" 
+        :filename="projet.mockup" 
+        width="" height="" 
+        class="transition-transform transform hover:scale-105 w-10/12 mx-auto h-[600px] md:w-[auto]" 
+      />
       </div>
+  </div>
     </section>
 
+    <section class="bg-cover bg-center" :style="{ backgroundImage: `url(${fondImage})` }">
+  <h2 class="font-source-sans-3 text-4xl md:text-5xl font-bold text-[#1F0032] pb-6 pl-[196px] pt-12">Fonctionnalités : Que peut-on faire sur ce site ?</h2>
+  <div class="flex flex-col md:flex-row items-start mx-4 md:mx-48"> <!-- Modifier ml-40 par mx-4 pour une marge responsive -->
+
+    <div class="md:w-1/2 max-w-screen-md pb-16 p-2"> <!-- Colonne de gauche -->
+      <p class="mt-2 font-source-sans-3 text-xl text-[#555555] pt-4 font-semibold">{{ projet.titre_fonctionnalite_1 }}</p>
+      
+      <!-- Conteneur en grille pour organiser les images -->
+      <div class="grid grid-cols-2 gap-4 pt-6">
+        <ImgPb v-if="projet.f1" :record="projet" :filename="projet.f1" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[250px]" />
+        <ImgPb v-if="projet.f2" :record="projet" :filename="projet.f2" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[250px]" />
+        <ImgPb v-if="projet.f3" :record="projet" :filename="projet.f3" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[250px]" />
+        <ImgPb v-if="projet.f4" :record="projet" :filename="projet.f4" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[250px]" />
+      </div>
+      <p class="mt-2 font-source-sans-3 text-xl text-[#555555] pt-4 pb-4 font-semibold">{{ projet.titre_tuto_1 }}</p>
     
+  <div class="flex items-start mt-2 pt-4">
+  <oneCircle class="w-[70px] h-auto" />
+  <p class="font-source-sans-3 text-xl text-[#555555] italic pl-6">{{ projet.t1_1 }}</p>
+</div>
+<div class="flex items-start mt-2 pt-4">
+  <twoCircle class="w-[70px] h-auto" />
+  <p class="font-source-sans-3 text-xl text-[#555555] italic pl-6">{{ projet.t1_2 }}</p>
+</div>
+<div class="flex items-start mt-2 pt-4">
+  <threeCircle class="w-[90px] h-auto" />
+  <p class="font-source-sans-3 text-xl text-[#555555] italic pl-6">{{ projet.t1_3 }}</p>
+</div>
+<div class="flex items-start mt-2 pt-4">
+  <fourCircle class="w-[70px] h-auto" />
+  <p class="font-source-sans-3 text-xl text-[#555555] italic pl-6">{{ projet.t1_4 }}</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</section>
+
+
+    <div v-for="(image, index) in [projet.mockup, projet.f1, projet.f2, projet.f3, projet.f4, projet.f5, projet.f6, projet.f7]" :key="index" class="">
+        <ImgPb v-if="image" :record="projet" :filename="image" width="auto" height="auto" class="h-[600px] w-auto" />
+      </div>
 
     <!-- Autres informations sur le projet -->
     <p>{{ projet.titre_tuto_1 }}</p>
-    <p>{{ projet.t1_1 }}</p>
-    <p>{{ projet.t1_2 }}</p>
-    <p>{{ projet.t1_3 }}</p>
-    <p>{{ projet.t1_4 }}</p>
+    
     <p>{{ projet.titre_tuto_2 }}</p>
     <p>{{ projet.t2_1 }}</p>
     <p>{{ projet.t2_2 }}</p>
@@ -70,6 +114,11 @@ import { useRoute } from 'vue-router';
 import { fetchProjects } from '@/backend';
 import ImgPb from '@/components/ImgPb.vue';
 import fondImage from '@/assets/fond.webp';
+import oneCircle from '@/assets/icons/oneCircle.vue';
+import twoCircle from '@/assets/icons/twoCircle.vue';
+import threeCircle from '@/assets/icons/threeCircle.vue';
+import fourCircle from '@/assets/icons/fourCircle.vue';
+ 
 const projet = ref<any>(null);
 const route = useRoute();
 const projectId = (route.params as { id: string }).id;
