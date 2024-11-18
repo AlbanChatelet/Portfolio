@@ -1,30 +1,21 @@
 <template>
   <section v-if="projet">
-    <header class="bg-cover bg-center flex flex-col items-center justify-start mt-20 sm:py-32 px-4 text-center relative" :style="{ backgroundImage: `url(${fondImage})` }">
-    <h2 class="font-handjet text-3xl md:text-8xl font-[500] text-center md:text-left mb-4 ">
+    <header class="bg-cover bg-center flex flex-col items-center justify-start mt-20 md:py-32 px-4 text-center relative" :style="{ backgroundImage: `url(${fondImage})` }">
+    <h2 class="font-handjet text-6xl md:text-8xl font-[500] text-center md:text-left md:mb-4 pt-12 md:pt-0">
       {{ projet.nom_projet }}
     </h2>
-    <h2 class="font-handjet text-2xl md:text-4xl font-[400] text-center md:text-center pt-12 px-[400px]">
+    <h2 class="font-handjet text-2xl md:text-4xl font-[400] text-center md:text-center pt-12 md:px-[400px]">
       {{ projet.intitule }}
     </h2>
-    <div class="w-[310px] h-[60px] rounded-[5px] bg-interactions flex items-center justify-center project-button mt-10 ">
+    <div class="w-[310px] h-[60px] rounded-[5px] bg-interactions flex items-center justify-center project-button mt-10">
       <p class="text-white font-handjet text-4xl">Lien vers le site</p>
     </div>
+    <div class="pb-12 md:pb-0"></div>
   </header>
-
-
-
-
-
-
-
-
-
-
 
   <section class="bg-[#DEF5FF]">
     <div class="flex flex-col md:flex-row items-start pt-4 md:pt-8 mx-4 md:mx-48"> <!-- Modifier ml-40 par mx-4 pour une marge responsive -->
-    <div class="md:w-1/2 max-w-screen-md p-4 pb-16"> <!-- Colonne de gauche -->
+    <div class="md:w-1/2 max-w-screen-md p-4 md:pb-16"> <!-- Colonne de gauche -->
       <h2 class="font-source-sans-3 text-4xl md:text-5xl font-bold text-[#1F0032] pb-6">{{ projet.nom_projet }}, c'est quoi ?</h2> <!-- Ajustement de la taille du texte -->
     <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p1 }}</p>
     <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p2 }}</p>
@@ -37,14 +28,14 @@
         :record="projet" 
         :filename="projet.mockup" 
         width="" height="" 
-        class="transition-transform transform hover:scale-105 w-10/12 mx-auto h-auto md:w-[1000px] md:pt-16" 
+        class="md:transition-transform md:transform md:hover:scale-105 mx-auto h-auto w-[700px] md:w-[1000px] md:pt-16" 
       />
       </div>
   </div>
     </section>
 
     <section class="bg-cover bg-center" :style="{ backgroundImage: `url(${fondImage})` }">
-  <h2 class="font-source-sans-3 text-4xl md:text-5xl font-bold text-[#1F0032] pb-6 pl-[196px] pt-12">Fonctionnalités : Que peut-on faire sur ce site ?</h2>
+  <h2 class="font-source-sans-3 text-3xl mx-4 md:text-5xl font-bold text-[#1F0032] pb-6 md:pl-[196px] pt-12">Fonctionnalités : Que peut-on faire sur ce site ?</h2>
   <div class="flex flex-col md:flex-row items-start mx-4 md:mx-48"> <!-- Modifier ml-40 par mx-4 pour une marge responsive -->
 
     <div class="md:w-1/2 max-w-screen-md pb-16 p-2"> <!-- Colonne de gauche -->
@@ -52,10 +43,10 @@
       
       <!-- Conteneur en grille pour organiser les images -->
       <div class="grid grid-cols-2 gap-4 pt-6">
-        <ImgPb v-if="projet.f1" :record="projet" :filename="projet.f1" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
-        <ImgPb v-if="projet.f2" :record="projet" :filename="projet.f2" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
-        <ImgPb v-if="projet.f3" :record="projet" :filename="projet.f3" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
-        <ImgPb v-if="projet.f4" :record="projet" :filename="projet.f4" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
+        <ImgPb v-if="projet.f1" :record="projet" :filename="projet.f1" width="" height="" class="transition-transform transform hover:scale-105 w-full md:h-[230px]" />
+        <ImgPb v-if="projet.f2" :record="projet" :filename="projet.f2" width="" height="" class="transition-transform transform hover:scale-105 w-full md:h-[230px]" />
+        <ImgPb v-if="projet.f3" :record="projet" :filename="projet.f3" width="" height="" class="transition-transform transform hover:scale-105 w-full md:h-[230px]" />
+        <ImgPb v-if="projet.f4" :record="projet" :filename="projet.f4" width="" height="" class="transition-transform transform hover:scale-105 w-full md:h-[230px]" />
       </div>
       <p class="mt-2 font-source-sans-3 text-xl text-[#555555] pt-4 pb-4 font-semibold">{{ projet.titre_tuto_1 }}</p>
     
@@ -83,23 +74,23 @@
       
       <!-- Conteneur en grille pour organiser les images -->
       <div class="grid grid-cols-2 gap-4 pt-6">
-        <ImgPb v-if="projet.f1" :record="projet" :filename="projet.f5" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
-        <ImgPb v-if="projet.f2" :record="projet" :filename="projet.f6" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
-        <ImgPb v-if="projet.f3" :record="projet" :filename="projet.f7" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
+        <ImgPb v-if="projet.f1" :record="projet" :filename="projet.f5" width="" height="" class="transition-transform transform hover:scale-105 w-full md:h-[230px]" />
+        <ImgPb v-if="projet.f2" :record="projet" :filename="projet.f6" width="" height="" class="transition-transform transform hover:scale-105 w-full md:h-[230px]" />
+        <ImgPb v-if="projet.f3" :record="projet" :filename="projet.f7" width="" height="" class="transition-transform transform hover:scale-105 w-full md:h-[230px]" />
         
       </div>
       <p class="mt-2 font-source-sans-3 text-xl text-[#555555] pt-4 pb-4 font-semibold">{{ projet.titre_tuto_2 }}</p>
     
   <div class="flex items-start mt-2 pt-4">
-  <oneCircle class="w-[50px] h-auto" />
+  <oneCircle class="w-[22.5px] md:w-[50px] h-auto" />
   <p class="font-source-sans-3 text-xl text-[#555555] italic pl-6">{{ projet.t2_1 }}</p>
 </div>
 <div class="flex items-start mt-2 pt-4">
-  <twoCircle class="w-[50px] h-auto" />
+  <twoCircle class="w-[22.5px] md:w-[50px] h-auto" />
   <p class="font-source-sans-3 text-xl text-[#555555] italic pl-6">{{ projet.t2_2 }}</p>
 </div>
-<div class="flex items-start mt-2 pt-4">
-  <threeCircle class="w-[50px] h-auto" />
+<div class="flex items-start mt-2 pt-4 pb-12">
+  <threeCircle class="w-[22.5px] md:w-[50px] h-auto" />
   <p class="font-source-sans-3 text-xl text-[#555555] italic pl-6">{{ projet.t2_3 }}</p>
 </div>
 
@@ -111,7 +102,7 @@
 <section class="bg-[#DEF5FF]">
   <div class="flex flex-col md:flex-row items-start pt-4 md:pt-8 mx-4 md:pb-16">
   <!-- Section Compétences (gauche) -->
-  <div class="w-full md:w-1/2 pl-48 py-8"> <!-- Limite la largeur à 50% de l'écran sur les écrans moyens et plus grands -->
+  <div class="w-full md:w-1/2 md:pl-48 py-8"> <!-- Limite la largeur à 50% de l'écran sur les écrans moyens et plus grands -->
     <h2 class="font-source-sans-3 text-3xl sm:text-4xl md:text-5xl font-bold text-[#1F0032] mb-8 text-left">Compétences</h2>
     
     <div class="flex flex-wrap gap-4 sm:gap-6 justify-start items-start">
@@ -124,12 +115,12 @@
       </div>
     </div>
 
-    <div class="flex gap-x-8 ml-auto">
-      <div class="w-[310px] h-[70px] rounded-[5px] bg-interactions flex items-center justify-center project-button mt-10">
-        <p class="text-white font-handjet text-4xl">Lien vers le site</p>
+    <div class="md:flex md:gap-x-8 ml-auto">
+      <div class="md:w-[310px] md:h-[70px] w-[210px] rounded-[5px] bg-interactions flex items-center justify-center project-button mt-10 mx-auto">
+        <p class="text-white font-handjet text-3xl md:text-4xl">Lien vers le site</p>
       </div>
-      <div class="w-[310px] h-[70px] rounded-[5px] border-solid border-2 border-interactions flex items-center justify-center project-button mt-10">
-        <p class="text-interactions font-handjet text-4xl">Retour à l'accueil</p>
+      <div class="md:w-[310px] md:h-[70px] w-[210px] rounded-[5px] border-solid border-2 border-interactions flex items-center justify-center project-button mt-4 md:mt-10 mx-auto">
+        <p class="text-interactions font-handjet text-3xl md:text-4xl">Retour à l'accueil</p>
       </div>
     </div>
 
@@ -139,7 +130,7 @@
     <!-- Section Compétences (droite) -->
     <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p1 }}</p>
     <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p2 }}</p>
-    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p3 }}</p>
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4 pb-12 md:pb-0">{{ projet.p3 }}</p>
   </div></div>
 </section>
 
