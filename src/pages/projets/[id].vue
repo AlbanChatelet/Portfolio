@@ -37,7 +37,7 @@
         :record="projet" 
         :filename="projet.mockup" 
         width="" height="" 
-        class="transition-transform transform hover:scale-105 w-10/12 mx-auto h-[600px] md:w-[auto]" 
+        class="transition-transform transform hover:scale-105 w-10/12 mx-auto h-auto md:w-[1000px] md:pt-16" 
       />
       </div>
   </div>
@@ -109,6 +109,7 @@
 </section>
   
 <section class="bg-[#DEF5FF]">
+  <div class="flex flex-col md:flex-row items-start pt-4 md:pt-8 mx-4 md:pb-16">
   <!-- Section Compétences (gauche) -->
   <div class="w-full md:w-1/2 pl-48 py-8"> <!-- Limite la largeur à 50% de l'écran sur les écrans moyens et plus grands -->
     <h2 class="font-source-sans-3 text-3xl sm:text-4xl md:text-5xl font-bold text-[#1F0032] mb-8 text-left">Compétences</h2>
@@ -122,17 +123,33 @@
         <p>{{ competence.nom_competence }}</p>
       </div>
     </div>
+
+    <div class="flex gap-x-8 ml-auto">
+      <div class="w-[310px] h-[70px] rounded-[5px] bg-interactions flex items-center justify-center project-button mt-10">
+        <p class="text-white font-handjet text-4xl">Lien vers le site</p>
+      </div>
+      <div class="w-[310px] h-[70px] rounded-[5px] border-solid border-2 border-interactions flex items-center justify-center project-button mt-10">
+        <p class="text-interactions font-handjet text-4xl">Retour à l'accueil</p>
+      </div>
+    </div>
+
   </div>
+
+  <div class="md:w-1/2 md:pr-40 md:pt-[100px]">
+    <!-- Section Compétences (droite) -->
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p1 }}</p>
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p2 }}</p>
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p3 }}</p>
+  </div></div>
 </section>
+
 
 
     
    
     
     
-    <p>{{ projet.moi_1 }}</p>
-    <p>{{ projet.moi_2 }}</p>
-    <p>{{ projet.moi_3 }}</p>
+    
   </section>
 </template>
 
