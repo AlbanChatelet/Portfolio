@@ -52,10 +52,10 @@
       
       <!-- Conteneur en grille pour organiser les images -->
       <div class="grid grid-cols-2 gap-4 pt-6">
-        <ImgPb v-if="projet.f1" :record="projet" :filename="projet.f1" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[250px]" />
-        <ImgPb v-if="projet.f2" :record="projet" :filename="projet.f2" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[250px]" />
-        <ImgPb v-if="projet.f3" :record="projet" :filename="projet.f3" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[250px]" />
-        <ImgPb v-if="projet.f4" :record="projet" :filename="projet.f4" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[250px]" />
+        <ImgPb v-if="projet.f1" :record="projet" :filename="projet.f1" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
+        <ImgPb v-if="projet.f2" :record="projet" :filename="projet.f2" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
+        <ImgPb v-if="projet.f3" :record="projet" :filename="projet.f3" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
+        <ImgPb v-if="projet.f4" :record="projet" :filename="projet.f4" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
       </div>
       <p class="mt-2 font-source-sans-3 text-xl text-[#555555] pt-4 pb-4 font-semibold">{{ projet.titre_tuto_1 }}</p>
     
@@ -78,30 +78,58 @@
 
 
     </div>
+      <div class="md:w-1/2 md:mx-20"> <!-- Colonne de droite -->
+        <p class="mt-2 font-source-sans-3 text-xl text-[#555555] pt-4 font-semibold">{{ projet.titre_fonctionnalite_1 }}</p>
       
+      <!-- Conteneur en grille pour organiser les images -->
+      <div class="grid grid-cols-2 gap-4 pt-6">
+        <ImgPb v-if="projet.f1" :record="projet" :filename="projet.f5" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
+        <ImgPb v-if="projet.f2" :record="projet" :filename="projet.f6" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
+        <ImgPb v-if="projet.f3" :record="projet" :filename="projet.f7" width="" height="" class="transition-transform transform hover:scale-105 w-full h-[230px]" />
+        
+      </div>
+      <p class="mt-2 font-source-sans-3 text-xl text-[#555555] pt-4 pb-4 font-semibold">{{ projet.titre_tuto_2 }}</p>
+    
+  <div class="flex items-start mt-2 pt-4">
+  <oneCircle class="w-[50px] h-auto" />
+  <p class="font-source-sans-3 text-xl text-[#555555] italic pl-6">{{ projet.t2_1 }}</p>
+</div>
+<div class="flex items-start mt-2 pt-4">
+  <twoCircle class="w-[50px] h-auto" />
+  <p class="font-source-sans-3 text-xl text-[#555555] italic pl-6">{{ projet.t2_2 }}</p>
+</div>
+<div class="flex items-start mt-2 pt-4">
+  <threeCircle class="w-[50px] h-auto" />
+  <p class="font-source-sans-3 text-xl text-[#555555] italic pl-6">{{ projet.t2_3 }}</p>
+</div>
+
+
+      </div>
+  </div>
+</section>
+  
+<section class="bg-[#DEF5FF]">
+  <!-- Section Compétences (gauche) -->
+  <div class="w-full md:w-1/2 pl-48 py-8"> <!-- Limite la largeur à 50% de l'écran sur les écrans moyens et plus grands -->
+    <h2 class="font-source-sans-3 text-3xl sm:text-4xl md:text-5xl font-bold text-[#1F0032] mb-8 text-left">Compétences</h2>
+    
+    <div class="flex flex-wrap gap-4 sm:gap-6 justify-start items-start">
+      <div 
+        v-for="competence in projet.expand.competences" 
+        :key="competence.id"
+        class="inline-block rounded-md px-8 py-2 sm:px-16 sm:py-4 bg-mise-en-evidence font-poppins text-base sm:text-2xl text-white transition-transform transform hover:scale-105 hover:shadow-lg"
+      >
+        <p>{{ competence.nom_competence }}</p>
+      </div>
+    </div>
   </div>
 </section>
 
 
-    <div v-for="(image, index) in [projet.mockup, projet.f1, projet.f2, projet.f3, projet.f4, projet.f5, projet.f6, projet.f7]" :key="index" class="">
-        <ImgPb v-if="image" :record="projet" :filename="image" width="auto" height="auto" class="h-[600px] w-auto" />
-      </div>
-
-    <!-- Autres informations sur le projet -->
-    <p>{{ projet.titre_tuto_1 }}</p>
     
-    <p>{{ projet.titre_tuto_2 }}</p>
-    <p>{{ projet.t2_1 }}</p>
-    <p>{{ projet.t2_2 }}</p>
-    <p>{{ projet.t2_3 }}</p>
+   
     
     
-    <!-- Liste des compétences -->
-    <ul v-if="projet.expand?.competences" class="list-disc pl-5">
-      <li v-for="competence in projet.expand.competences" :key="competence.id">
-        <p>{{ competence.nom_competence }}</p>
-      </li>
-    </ul>
     <p>{{ projet.moi_1 }}</p>
     <p>{{ projet.moi_2 }}</p>
     <p>{{ projet.moi_3 }}</p>
