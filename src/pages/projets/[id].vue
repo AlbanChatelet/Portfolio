@@ -23,13 +23,14 @@
 
 
 
+    <div class="flex flex-col md:flex-row items-start pt-4 md:pt-8 mx-4 md:mx-48"> <!-- Modifier ml-40 par mx-4 pour une marge responsive -->
+    <div class="md:w-1/2 max-w-screen-md p-4 pb-16"> <!-- Colonne de gauche -->
 
-
-    <p>{{ projet.p1 }}</p>
-    <p>{{ projet.p2 }}</p>
-    <p>{{ projet.p3 }}</p>
-    <p>{{ projet.p4 }}</p>
-    
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-8">{{ projet.p1 }}</p>
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-8">{{ projet.p2 }}</p>
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-8">{{ projet.p3 }}</p>
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-8">{{ projet.p4 }}</p>
+    </div></div>
     <!-- Section pour les images -->
     <section>
       <div v-for="(image, index) in [projet.mockup, projet.f1, projet.f2, projet.f3, projet.f4, projet.f5, projet.f6, projet.f7]" :key="index" class="">
