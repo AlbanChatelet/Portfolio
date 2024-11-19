@@ -17,11 +17,11 @@
 
         <!-- Réseaux sociaux -->
         <div class="flex space-x-4 md:pl-6">
-          <a href="https://www.linkedin.com" target="_blank" class="hover:text-gray-300">
+          <a href="https://www.linkedin.com/in/alban-chatelet-76256629b/" target="_blank" class="hover:text-gray-300">
             <img src="../assets/linkedin-icon.webp" alt="LinkedIn" class="w-24 h-24">
           </a>
-          <a href="https://www.behance.net" target="_blank" class="hover:text-gray-300">
-            <img src="../assets/behance-icon.webp" alt="Behance" class="w-24 h-24">
+          <a href="https://github.com/AlbanChatelet" target="_blank" class="hover:text-gray-300">
+            <img src="../assets/github-icon.webp" alt="GitHub" class="w-24 h-24">
           </a>
         </div>
       </div>
