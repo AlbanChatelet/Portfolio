@@ -11,6 +11,12 @@ import soloIcon from '@/assets/icons/solo-icon.vue';
 import ImgPb from '@/components/ImgPb.vue'; // Chemin à ajuster si nécessaire
 import grandeBarreSeparation from '@/assets/icons/grande-barre-separation.vue';
 import { fetchCompetences, fetchLogiciels, fetchProjects } from '@/backend'; // Assurez-vous d'importer les deux fonctions
+import { RouterLink } from 'vue-router/auto';
+
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
 
 // Variable réactive pour stocker les compétences
 interface Competence {
@@ -94,6 +100,15 @@ onMounted(() => {
     });
   }
 });
+
+function goToProjetsSection() {
+  router.push({ path: '/', hash: '#projets' });
+}
+
+function goToContactSection() {
+  router.push({ path: '/', hash: '#contact' });
+}
+
 </script>
 
 <template>
@@ -105,7 +120,8 @@ onMounted(() => {
       Un développeur Web Full Stack
     </h2>
     <!-- Bouton Projets -->
-    <div class="w-[210px] h-[52px] rounded-[5px] bg-interactions flex items-center justify-center project-button mt-20 ">
+    
+    <div @click="goToProjetsSection" class="w-[210px] h-[52px] rounded-[5px] bg-interactions flex items-center justify-center project-button mt-20 ">
       <p class="text-white font-handjet text-3xl">Projets</p>
     </div>
   </header>
@@ -151,7 +167,7 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  <div class="w-[180px] md:w-[200px] h-[48px] rounded-[5px] bg-interactions flex items-center justify-center mt-4 mb-12 project-button ml-16 md:ml-12 md:mt-10">
+  <div  @click="goToContactSection"  class="w-[180px] md:w-[200px] h-[48px] rounded-[5px] bg-interactions flex items-center justify-center mt-4 mb-12 project-button ml-16 md:ml-12 md:mt-10">
     <p class="text-white font-handjet text-2xl md:text-3xl">Contact</p>
   </div>
 </div>

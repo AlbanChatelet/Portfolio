@@ -97,25 +97,26 @@ function goToContactSection() {
         <!-- Liens du menu mobile -->
         <nav class="flex flex-col items-start space-y-2 font-spartan w-full">
           <button 
-            @click="() => { scrollToSection('home'); toggleMenu(); }" 
+            @click="() => { goToHomeSection(); toggleMenu(); }" 
             class="text-black text-lg font-source-code-pro font-bold border-b border-gray-300 py-2 w-full">
             ACCUEIL
           </button>
           <button 
-            @click="() => { scrollToSection('apropos'); toggleMenu(); }" 
+            @click="() => { goToAproposSection(); toggleMenu(); }" 
             class="text-black text-lg font-source-code-pro font-bold border-b border-gray-300 py-2 w-full">
             A PROPOS
           </button>
           <button 
-            @click="() => { scrollToSection('projets'); toggleMenu(); }" 
+            @click="() => { goToProjetsSection(); toggleMenu(); }" 
             class="text-black text-lg font-source-code-pro font-bold border-b border-gray-300 py-2 w-full">
             PROJETS
           </button>
           <button 
-            @click="() => { scrollToSection('contact'); toggleMenu(); }" 
+            @click="() => { goToContactSection(); toggleMenu(); }" 
             class="text-black text-lg font-source-code-pro font-bold py-2 w-full">
             CONTACT
           </button>
+
         </nav>
       </div>
     </transition>

@@ -7,22 +7,19 @@
     <h2 class="font-handjet text-2xl md:text-4xl font-[400] text-center md:text-center pt-12 md:px-[400px]">
       {{ projet.intitule }}
     </h2>
-    <div class="w-[310px] h-[60px] rounded-[5px] bg-interactions flex items-center justify-center project-button mt-10">
-      <p class="text-white font-handjet text-4xl">Lien vers le site</p>
-    </div>
+    <a :href="projet.lien" target="_blank">
+  <div class="w-[310px] h-[60px] rounded-[5px] bg-interactions flex items-center justify-center project-button mt-10">
+    <p class="text-white font-handjet text-4xl">Lien vers le site</p>
+  </div>
+</a>
+
+
     <div class="pb-12 md:pb-0"></div>
   </header>
 
   <section class="bg-[#DEF5FF]">
     <div class="flex flex-col md:flex-row items-start pt-4 md:pt-8 mx-4 md:mx-48"> <!-- Modifier ml-40 par mx-4 pour une marge responsive -->
-    <div class="md:w-1/2 max-w-screen-md p-4 md:pb-16"> <!-- Colonne de gauche -->
-      <h2 class="font-source-sans-3 text-4xl md:text-5xl font-bold text-[#1F0032] pb-6">{{ projet.nom_projet }}, c'est quoi ?</h2> <!-- Ajustement de la taille du texte -->
-    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p1 }}</p>
-    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p2 }}</p>
-    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p3 }}</p>
-    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p4 }}</p>
-    </div>
-    <div class="md:w-1/2 md:mx-20"> <!-- Colonne de droite -->
+      <div class="md:w-1/2 md:mx-20"> <!-- Colonne de gauche -->
       <ImgPb 
         v-if="projet.mockup" 
         :record="projet" 
@@ -31,6 +28,14 @@
         class="md:transition-transform md:transform md:hover:scale-105 mx-auto h-auto w-[700px] md:w-[1000px] md:pt-16" 
       />
       </div>
+    <div class="md:w-1/2 max-w-screen-md p-4 md:pb-16"> <!-- Colonne de droite -->
+      <h2 class="font-source-sans-3 text-4xl md:text-5xl font-bold text-[#1F0032] pb-6">{{ projet.nom_projet }}, c'est quoi ?</h2> <!-- Ajustement de la taille du texte -->
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p1 }}</p>
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p2 }}</p>
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p3 }}</p>
+    <p class="mt-2 font-source-sans-3 text-lg text-[#555555] pt-4">{{ projet.p4 }}</p>
+    </div>
+    
   </div>
     </section>
 
