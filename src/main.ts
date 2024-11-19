@@ -4,10 +4,25 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from 'vue-router/auto-routes'
+
 const app = createApp(App)
 
-app.use(createRouter({history: createWebHistory(),
-  // pass the generated routes written by the plugin 🤖
-routes:routes,}))
+const router = createRouter({
+  history: createWebHistory(),
+  routes: routes
+})
+
+router.afterEach((to) => {
+  // Vérifie si l'URL contient un hash
+  if (to.hash) {
+    const element = document.querySelector(to.hash)
+    if (element) {
+      // Scrolling fluide vers l'élément
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+})
+
+app.use(router)
 
 app.mount('#app')

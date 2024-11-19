@@ -8,6 +8,7 @@ const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
 
+// Fonction de scroll fluide
 function scrollToSection(sectionId: string) {
   const section = document.getElementById(sectionId);
   if (section) {
@@ -15,7 +16,27 @@ function scrollToSection(sectionId: string) {
   }
 }
 
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function goToAproposSection() {
+  router.push({ path: '/', hash: '#apropos' });
+}
+
+function goToHomeSection() {
+  router.push({ path: '/', hash: '#home' });
+}
+function goToProjetsSection() {
+  router.push({ path: '/', hash: '#projets' });
+}
+function goToContactSection() {
+  router.push({ path: '/', hash: '#contact' });
+}
+
+
 </script>
+
 
 <template>
   <header class="bg-[#D8E4FA] text-black p-4 flex items-center justify-between fixed top-0 left-0 w-full shadow-md z-50">
@@ -29,28 +50,28 @@ function scrollToSection(sectionId: string) {
       <ul class="flex space-x-8">
         <li>
           <button 
-            @click="scrollToSection('home')" 
+            @click="goToHomeSection" 
             class="bg-[#D8E4FA] text-black rounded-lg w-[153px] h-[60px] flex items-center justify-center shadow-lg transition-all duration-200 hover:shadow-xl font-source-code-pro font-bold">
             ACCUEIL
           </button>
         </li>
         <li>
           <button 
-            @click="scrollToSection('apropos')" 
+            @click="goToAproposSection" 
             class="bg-[#D8E4FA] text-black rounded-lg w-[153px] h-[60px] flex items-center justify-center shadow-lg transition-all duration-200 hover:shadow-xl font-source-code-pro font-bold">
             A PROPOS
           </button>
         </li>
         <li>
           <button 
-            @click="scrollToSection('projets')" 
+            @click="goToProjetsSection" 
             class="bg-[#D8E4FA] text-black rounded-lg w-[153px] h-[60px] flex items-center justify-center shadow-lg transition-all duration-200 hover:shadow-xl font-source-code-pro font-bold">
             PROJETS
           </button>
         </li>
         <li>
           <button 
-            @click="scrollToSection('contact')" 
+            @click="goToContactSection" 
             class="bg-[#D8E4FA] text-black rounded-lg w-[153px] h-[60px] flex items-center justify-center shadow-lg transition-all duration-200 hover:shadow-xl font-source-code-pro font-bold">
             CONTACT
           </button>
@@ -122,5 +143,4 @@ function scrollToSection(sectionId: string) {
   transform: translateY(-20px);
   opacity: 0;
 }
-
 </style>
