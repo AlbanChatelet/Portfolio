@@ -152,10 +152,10 @@
 
   <button
   @click="scrollToTop"
-  class="fixed bottom-6 right-2 md:bottom-16 md:right-16  rounded-full transition-transform transform hover:scale-105"
+  class="fixed bottom-6 right-6 md:bottom-16 md:right-16  rounded-full transition-transform transform hover:scale-105"
   aria-label="Remonter en haut"
 >
-  <scrollReset class="h-[59px] w-[60px]" />
+  <scrollReset class="h-[80px] w-[70px]" />
 </button>
 </template>
 
