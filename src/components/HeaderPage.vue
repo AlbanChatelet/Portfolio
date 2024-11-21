@@ -39,7 +39,7 @@ function goToContactSection() {
 
 
 <template>
-  <header class="bg-[#D8E4FA] text-black flex items-center py-4 justify-between fixed top-0 left-0 w-full shadow-md z-50">
+  <header class="bg-[#D8E4FA] text-black flex items-center py-4 md:py-0 justify-between fixed top-0 left-0 w-full shadow-md z-50">
     <!-- Logo -->
     <RouterLink to="/" class="flex items-center ml-4 md:ml-16">
       <img class="h-16 md:h-24" src="../assets/logo.webp" alt="Logo" />

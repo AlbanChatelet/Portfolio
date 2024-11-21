@@ -12,6 +12,7 @@ import ImgPb from '@/components/ImgPb.vue'; // Chemin à ajuster si nécessaire
 import grandeBarreSeparation from '@/assets/icons/grande-barre-separation.vue';
 import { fetchCompetences, fetchLogiciels, fetchProjects } from '@/backend'; // Assurez-vous d'importer les deux fonctions
 import { RouterLink } from 'vue-router/auto';
+import scrollReset from '@/assets/icons/scroll-reset.vue';
 
 import { useRouter } from 'vue-router';
 
@@ -121,6 +122,13 @@ function goToContactSection() {
       // Effectue un défilement fluide vers l'élément
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  });
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth', // Permet un défilement fluide
   });
 }
 
@@ -361,7 +369,13 @@ function goToContactSection() {
 
 </section>
 
-
+<button
+  @click="scrollToTop"
+  class="fixed bottom-16 right-16 py-2 px-4 rounded-full transition-transform transform hover:scale-105"
+  aria-label="Remonter en haut"
+>
+  <scrollReset />
+</button>
 
 
 

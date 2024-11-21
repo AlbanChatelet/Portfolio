@@ -149,6 +149,14 @@
     
     
   </section>
+
+  <button
+  @click="scrollToTop"
+  class="fixed bottom-16 right-16 py-2 px-4 rounded-full transition-transform transform hover:scale-105"
+  aria-label="Remonter en haut"
+>
+  <scrollReset />
+</button>
 </template>
 
 <script setup lang="ts" name="ProjectDetails">
@@ -161,6 +169,7 @@ import oneCircle from '@/assets/icons/oneCircle.vue';
 import twoCircle from '@/assets/icons/twoCircle.vue';
 import threeCircle from '@/assets/icons/threeCircle.vue';
 import fourCircle from '@/assets/icons/fourCircle.vue';
+import scrollReset from '@/assets/icons/scroll-reset.vue';
  
 const projet = ref<any>(null);
 const route = useRoute();
@@ -173,6 +182,14 @@ onMounted(async () => {
     console.error("Projet non trouvé avec l'ID:", projectId);
   }
 });
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth', // Permet un défilement fluide
+  });
+}
+
 </script>
 
 <style scoped>
