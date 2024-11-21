@@ -31,6 +31,8 @@ interface Logiciel {
 }
 
 // Variables réactives
+const skills = ['HTML', 'CSS', 'PocketBase', 'SQL', 'JavaScript', 'Vue.js', 
+'Responsive Design', 'WordPress', 'Tailwind'];
 const competences = ref<Competence[]>([]);
 const logiciels = ref<Logiciel[]>([]);
 const projets = ref<any[]>([]);
@@ -121,6 +123,7 @@ function scrollToTop() {
     behavior: 'smooth',
   });
 }
+
 </script>
 
 

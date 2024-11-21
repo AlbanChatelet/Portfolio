@@ -46,7 +46,7 @@ function goToContactSection() {
     </RouterLink>
 
     <!-- Menu Desktop -->
-    <nav class="hidden md:flex items-center space-x-8">
+    <nav class="hidden md:flex items-center space-x-8 md:pr-6">
       <ul class="flex space-x-8">
         <li>
           <button 
