@@ -6,13 +6,13 @@
         <!-- Menu de navigation -->
         <nav class="grid grid-cols-2 gap-x-6 gap-y-2">
           <button 
-            @click="scrollToSection('home')" class="text-2xl md:text-3xl uppercase hover:text-gray-300 font-handjet">Accueil</button>
+            @click="scrollToSection('home')" class="text-3xl md:text-3xl uppercase hover:text-gray-300 font-handjet">Accueil</button>
           <button 
-            @click="scrollToSection('apropos')" class="text-2xl md:text-3xl uppercase hover:text-gray-300 font-handjet">À propos</button>
+            @click="scrollToSection('apropos')" class="text-3xl md:text-3xl uppercase hover:text-gray-300 font-handjet">À propos</button>
           <button 
-            @click="scrollToSection('projets')" class="text-2xl md:text-3xl uppercase hover:text-gray-300 font-handjet">Projets</button>
+            @click="scrollToSection('projets')" class="text-3xl md:text-3xl uppercase hover:text-gray-300 font-handjet">Projets</button>
           <button 
-            @click="scrollToSection('contact')" class="text-2xl md:text-3xl uppercase hover:text-gray-300 font-handjet">Contact</button>
+            @click="scrollToSection('contact')" class="text-3xl md:text-3xl uppercase hover:text-gray-300 font-handjet">Contact</button>
         </nav>
 
         <!-- Réseaux sociaux -->
@@ -29,7 +29,7 @@
       <!-- Bouton Télécharger CV (section centrale) -->
       <div class="my-6 md:my-0 md:w-1/3 flex justify-center">
         <a href="../assets/mon_cv.pdf" download
-           class="bg-[#0099CC] text-white px-12 py-6 rounded-lg shadow-lg hover:bg-[#0088b2] text-2xl md:text-3xl transition duration-300 font-handjet">
+           class="bg-[#0099CC] text-white px-12 py-6 rounded-lg shadow-lg hover:bg-[#0088b2] text-3xl md:text-3xl transition duration-300 font-handjet">
           Télécharge mon CV !
         </a>
       </div>
