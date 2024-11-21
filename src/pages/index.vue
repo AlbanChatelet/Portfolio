@@ -102,11 +102,26 @@ onMounted(() => {
 });
 
 function goToProjetsSection() {
-  router.push({ path: '/', hash: '#projets' });
+  router.push({ path: '/', hash: '#projets' }).then(() => {
+    // Après la navigation, vérifie si l'élément existe
+    const element = document.querySelector('#projets');
+    if (element) {
+      // Effectue un défilement fluide vers l'élément
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
 }
 
 function goToContactSection() {
-  router.push({ path: '/', hash: '#contact' });
+  // Navigue à la page d'accueil avec le hash #contact
+  router.push({ path: '/', hash: '#contact' }).then(() => {
+    // Après la navigation, vérifie si l'élément existe
+    const element = document.querySelector('#contact');
+    if (element) {
+      // Effectue un défilement fluide vers l'élément
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
 }
 
 </script>

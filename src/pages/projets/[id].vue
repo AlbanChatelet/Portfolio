@@ -121,12 +121,14 @@
     </div>
 
     <div class="md:flex">
+      <a :href="projet.lien" target="_blank">
       <div class="md:w-[310px] md:h-[70px] w-[210px] rounded-[5px] bg-interactions flex items-center justify-center project-button mt-10 mx-auto md:mr-8">
         <p class="text-white font-handjet text-3xl md:text-4xl">Lien vers le site</p>
-      </div>
+      </div></a>
+      <RouterLink to="/">
       <div class="md:w-[310px] md:h-[70px] w-[210px] rounded-[5px] border-solid border-2 border-interactions flex items-center justify-center project-button mt-4 md:mt-10 mx-auto md:mr-24">
         <p class="text-interactions font-handjet text-3xl md:text-4xl">Retour à l'accueil</p>
-      </div>
+      </div></RouterLink>
     </div>
 
   </div>

@@ -9,15 +9,29 @@ const app = createApp(App)
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: routes
+  routes: routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      // Revenir à une position sauvegardée (par exemple, après un retour avec le bouton du navigateur)
+      return savedPosition
+    } else if (to.hash) {
+      // Si un hash est présent dans l'URL, scroll vers cet élément
+      const element = document.querySelector(to.hash)
+      if (element) {
+        return { el: to.hash, behavior: 'smooth' } // Vue Router gère `scrollIntoView`
+      }
+    } else {
+      // Scroll en haut de la page pour les autres navigations
+      return { top: 0 }
+    }
+  }
 })
 
+// Votre logique actuelle d'écoute des routes reste ici (facultatif)
 router.afterEach((to) => {
-  // Vérifie si l'URL contient un hash
   if (to.hash) {
     const element = document.querySelector(to.hash)
     if (element) {
-      // Scrolling fluide vers l'élément
       element.scrollIntoView({ behavior: 'smooth' })
     }
   }

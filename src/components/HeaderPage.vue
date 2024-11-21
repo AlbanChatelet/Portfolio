@@ -39,10 +39,10 @@ function goToContactSection() {
 
 
 <template>
-  <header class="bg-[#D8E4FA] text-black p-4 flex items-center justify-between fixed top-0 left-0 w-full shadow-md z-50">
+  <header class="bg-[#D8E4FA] text-black flex items-center py-4 justify-between fixed top-0 left-0 w-full shadow-md z-50">
     <!-- Logo -->
-    <RouterLink to="/" class="flex items-center ml-4">
-      <img class="h-12" src="../assets/logo.webp" alt="Logo" />
+    <RouterLink to="/" class="flex items-center ml-4 md:ml-16">
+      <img class="h-16 md:h-24" src="../assets/logo.webp" alt="Logo" />
     </RouterLink>
 
     <!-- Menu Desktop -->
@@ -80,7 +80,7 @@ function goToContactSection() {
     </nav>
 
     <!-- Menu Burger pour mobile -->
-    <button @click="toggleMenu" class="md:hidden flex items-center">
+    <button @click="toggleMenu" class="md:hidden flex items-center mr-4">
       <template v-if="isMenuOpen">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
