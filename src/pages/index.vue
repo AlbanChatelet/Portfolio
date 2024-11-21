@@ -8,9 +8,9 @@ import computerIcon from '@/assets/icons/computer-icon.vue';
 import MobileIcon from '@/assets/icons/mobile-icon.vue';
 import collectifIcon from '@/assets/icons/collectif-icon.vue';
 import soloIcon from '@/assets/icons/solo-icon.vue';
-import ImgPb from '@/components/ImgPb.vue'; // Chemin à ajuster si nécessaire
+import ImgPb from '@/components/ImgPb.vue';
 import grandeBarreSeparation from '@/assets/icons/grande-barre-separation.vue';
-import { fetchCompetences, fetchLogiciels, fetchProjects } from '@/backend'; // Assurez-vous d'importer les deux fonctions
+import { fetchCompetences, fetchLogiciels, fetchProjects } from '@/backend';
 import { RouterLink } from 'vue-router/auto';
 import scrollReset from '@/assets/icons/scroll-reset.vue';
 
@@ -18,13 +18,11 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-
-// Variable réactive pour stocker les compétences
+// Définition des interfaces
 interface Competence {
   id: string;
   nom_competence: string;
 }
-
 
 interface Logiciel {
   id: string;
@@ -32,36 +30,33 @@ interface Logiciel {
   logo_logiciel?: string;
 }
 
+// Variables réactives
 const competences = ref<Competence[]>([]);
 const logiciels = ref<Logiciel[]>([]);
 const projets = ref<any[]>([]);
-// Variable réactive pour stocker les logiciels
+const projetsReverses = ref<any[]>([]); // Liste des projets inversée
 
-// Fonction pour récupérer toutes les compétences depuis PocketBase
-
-
-// Fonction pour récupérer tous les logiciels depuis PocketBase
-
-// Récupère les compétences et les logiciels au montage du composant
+// Récupération des données au montage
 onMounted(async () => {
   competences.value = await fetchCompetences();
   logiciels.value = await fetchLogiciels();
   projets.value = await fetchProjects();
+  projetsReverses.value = [...projets.value].reverse(); // Inverse l'ordre des projets
 });
-// Fonction pour l'effet de machine à écrire en boucle
+
+// Fonction pour l'effet de machine à écrire
 function animateTextLoop() {
   const elements = document.querySelectorAll(".animate-text");
-  const delay = 100; // Délai entre chaque lettre
-  const eraseDelay = 50; // Délai pour effacer chaque lettre
-  const pause = 2000; // Pause à la fin de l'animation
+  const delay = 100;
+  const eraseDelay = 50;
+  const pause = 2000;
 
   elements.forEach((elem) => {
     const content = elem.getAttribute("data-text") || "";
-    const startFrom = content.indexOf("l"); // Trouver l'index de "A" pour commencer l'animation
-    let index = startFrom; // Commencer à "A"
+    const startFrom = content.indexOf("l");
+    let index = startFrom;
     let isErasing = false;
 
-    // Fonction de boucle d'animation
     function type() {
       if (!isErasing && index < content.length) {
         elem.textContent = content.substring(0, index + 1);
@@ -84,42 +79,37 @@ function animateTextLoop() {
 }
 
 // Vérification de la taille de l'écran
-const isMobile = ref(window.innerWidth < 640); // Exemple: 640px pour mobile
+const isMobile = ref(window.innerWidth < 640);
 
-// Écouteur d'événements pour redimensionner l'écran
 window.addEventListener('resize', () => {
   isMobile.value = window.innerWidth < 640;
 });
 
 onMounted(() => {
   if (!isMobile.value) {
-    animateTextLoop(); // Exécuter l'animation uniquement si pas sur mobile
+    animateTextLoop();
   } else {
     const elements = document.querySelectorAll(".animate-text");
     elements.forEach(elem => {
-      elem.textContent = elem.getAttribute("data-text") || ""; // Affiche le texte complet
+      elem.textContent = elem.getAttribute("data-text") || "";
     });
   }
 });
 
+// Navigation vers des sections spécifiques
 function goToProjetsSection() {
   router.push({ path: '/', hash: '#projets' }).then(() => {
-    // Après la navigation, vérifie si l'élément existe
     const element = document.querySelector('#projets');
     if (element) {
-      // Effectue un défilement fluide vers l'élément
       element.scrollIntoView({ behavior: 'smooth' });
     }
   });
 }
 
 function goToContactSection() {
-  // Navigue à la page d'accueil avec le hash #contact
   router.push({ path: '/', hash: '#contact' }).then(() => {
-    // Après la navigation, vérifie si l'élément existe
     const element = document.querySelector('#contact');
     if (element) {
-      // Effectue un défilement fluide vers l'élément
       element.scrollIntoView({ behavior: 'smooth' });
     }
   });
@@ -128,11 +118,11 @@ function goToContactSection() {
 function scrollToTop() {
   window.scrollTo({
     top: 0,
-    behavior: 'smooth', // Permet un défilement fluide
+    behavior: 'smooth',
   });
 }
-
 </script>
+
 
 <template>
   <header id="home" class="bg-cover bg-center flex flex-col items-center justify-start py-12 sm:py-32 px-4 text-center relative" :style="{ backgroundImage: `url(${fondImage})` }">
@@ -270,10 +260,10 @@ function scrollToTop() {
   </div>
 
   <div 
-    v-for="projet in projets" 
+    v-for="projet in projetsReverses" 
     :key="projet.id" 
     class="flex flex-col md:flex-row items-center justify-center w-full py-12"
-  >
+>
     <!-- Partie gauche : Aperçu du projet -->
     <div class="w-full md:w-6/12">
       <ImgPb 

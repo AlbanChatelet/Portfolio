@@ -75,7 +75,7 @@
 
     </div>
       <div class="md:w-1/2 md:mx-20"> <!-- Colonne de droite -->
-        <p class="mt-2 font-source-sans-3 text-xl text-[#555555] pt-4 font-semibold">{{ projet.titre_fonctionnalite_1 }}</p>
+        <p class="mt-2 font-source-sans-3 text-xl text-[#555555] pt-4 font-semibold">{{ projet.titre_fonctionnalite_2 }}</p>
       
       <!-- Conteneur en grille pour organiser les images -->
       <div class="grid grid-cols-2 gap-4 pt-6">
