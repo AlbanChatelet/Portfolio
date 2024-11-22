@@ -16,7 +16,7 @@
         </nav>
 
         <!-- Réseaux sociaux -->
-        <div class="flex space-x-4 md:pl-6">
+        <div class="flex space-x-4 md:pl-12">
           <a href="https://www.linkedin.com/in/alban-chatelet-76256629b/" target="_blank" class="hover:text-gray-300">
             <img src="../assets/linkedin-icon.webp" alt="LinkedIn" class="w-24 h-24">
           </a>
