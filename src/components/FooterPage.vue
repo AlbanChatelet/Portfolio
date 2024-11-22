@@ -28,9 +28,10 @@
 
       <!-- Bouton Télécharger CV (section centrale) -->
       <div class="my-6 md:my-0 md:w-1/3 flex justify-center">
-        <a href="../assets/mon_cv.pdf" download
-           class="bg-[#0099CC] text-white px-12 py-6 rounded-lg shadow-lg hover:bg-[#0088b2] text-3xl md:text-3xl transition duration-300 font-handjet">
+        <a href="../assets/mon_cv.pdf" download="mon_cv.pdf">
+           <button class="bg-[#0099CC] text-white px-12 py-6 rounded-lg shadow-lg hover:bg-[#0088b2] text-3xl md:text-3xl transition duration-300 font-handjet">
           Télécharge mon CV !
+        </button>
         </a>
       </div>
 
