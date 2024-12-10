@@ -18,6 +18,55 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
+// Clé d'accès pour Web3Forms
+const WEB3FORMS_ACCESS_KEY = "228f6f90-f2e2-412e-b8e0-e0cd8de5fb0b";
+
+// Variables pour le formulaire
+const name = ref("");
+const email = ref("");
+const message = ref("");
+const isSubmitting = ref(false);
+const successMessage = ref("");
+const errorMessage = ref("");
+
+async function submitForm() {
+  isSubmitting.value = true;
+  successMessage.value = "";
+  errorMessage.value = "";
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        name: name.value,
+        email: email.value,
+        message: message.value,
+      }),
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      successMessage.value = "Votre message a été envoyé avec succès !";
+      // Réinitialisation des champs
+      name.value = "";
+      email.value = "";
+      message.value = "";
+    } else {
+      errorMessage.value = "Une erreur s'est produite. Veuillez réessayer.";
+    }
+  } catch (error) {
+    errorMessage.value = "Impossible d'envoyer le message. Vérifiez votre connexion.";
+  } finally {
+    isSubmitting.value = false;
+  }
+}
+
+
 // Définition des interfaces
 interface Competence {
   id: string;
@@ -325,37 +374,48 @@ function scrollToTop() {
 
   <!-- Formulaire de contact -->
   <div class="max-w-lg mx-auto bg-[#DEF5FF] p-8 rounded-lg shadow-lg">
-    <form action="#" method="POST" class="space-y-6">
-      <!-- Champ Nom -->
-      <div>
-        <label for="name" class="block text-sm font-medium text-gray-700 font-haut-de-page">Nom</label>
-        <input type="text" id="name" name="name" required
-          class="mt-1 block w-full px-4 py-2 border border-[#C7DFFD] bg-[#C7DFFD] rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-      </div>
+  <form @submit.prevent="submitForm" class="space-y-4">
+    <label for="name" class="block text-sm font-medium text-gray-700 font-haut-de-page">Nom</label>
+    <input
+      type="text"
+      name="name"
+      v-model="name"
+      placeholder="Votre nom"
+      class="border rounded p-2 w-full border-[#C7DFFD] bg-[#C7DFFD]"
+      required
+    />
+    <label for="email" class="block text-sm font-medium text-gray-700 font-haut-de-page">Email</label>
+    <input
+      type="email"
+      name="email"
+      v-model="email"
+      placeholder="Votre email"
+      class="border rounded p-2 w-full border-[#C7DFFD] bg-[#C7DFFD]"
+      required
+    />
+    <label for="message" class="block text-sm font-medium text-gray-700 font-haut-de-page">Message</label>
+    <textarea
+      name="message"
+      v-model="message"
+      placeholder="Votre message"
+      class="border rounded p-2 w-full border-[#C7DFFD] bg-[#C7DFFD]"
+      required
+    ></textarea>
+    <div class="flex justify-center">
+  <button
+    type="submit"
+    class="px-12 py-3 bg-[#0094D3] text-white font-haut-de-page md:text-2xl rounded-md hover:bg-[#00a9d3] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-200"
+    :disabled="isSubmitting"
+  >
+    {{ isSubmitting ? "Envoi en cours..." : "Envoyer le message" }}
+  </button>
+</div>
 
-      <!-- Champ Email -->
-      <div>
-        <label for="email" class="block text-sm font-medium text-gray-700 font-haut-de-page">Email</label>
-        <input type="email" id="email" name="email" required
-          class="mt-1 block w-full px-4 py-2 border border-[#C7DFFD] bg-[#C7DFFD] rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-      </div>
+    <p v-if="successMessage" class="text-green-500 mt-2">{{ successMessage }}</p>
+    <p v-if="errorMessage" class="text-red-500 mt-2">{{ errorMessage }}</p>
+  </form>
+</div>
 
-      <!-- Champ Message -->
-      <div>
-        <label for="message" class="block text-sm font-medium text-gray-700 font-haut-de-page">Message</label>
-        <textarea id="message" name="message" rows="4" required
-          class="mt-1 block w-full px-4 py-2 border border-[#C7DFFD] bg-[#C7DFFD] rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
-      </div>
-
-      <!-- Bouton Envoyer -->
-      <div class="flex justify-center">
-        <button type="submit"
-          class="w-full md:w-auto px-24 py-3 bg-[#0094D3] text-white font-haut-de-page md:text-2xl rounded-md hover:bg-[#00a9d3] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-200">
-          Envoyer
-        </button>
-      </div>
-    </form>
-  </div>
 
 
 
